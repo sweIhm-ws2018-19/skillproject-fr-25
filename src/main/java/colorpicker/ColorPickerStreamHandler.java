@@ -24,6 +24,10 @@ import main.java.colorpicker.handlers.WhatsMyColorIntentHandler;
 import main.java.colorpicker.handlers.CancelandStopIntentHandler;
 import main.java.colorpicker.handlers.MyColorIsIntentHandler;
 
+/**
+ * @author Richa
+ *
+ */
 public class ColorPickerStreamHandler extends SkillStreamHandler {
 
     private static Skill getSkill() {
@@ -40,6 +44,7 @@ public class ColorPickerStreamHandler extends SkillStreamHandler {
                 //.withSkillId("")
                 .build();
     }
+
 
     public ColorPickerStreamHandler() {
         super(getSkill());
