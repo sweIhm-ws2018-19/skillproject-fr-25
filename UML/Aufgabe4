@@ -1,1 +1,30 @@
-blabab
+public GeldBetrag saldo() {
+}
+
+public void einzahlen(GeldBetrag eingezahlterBetrag) {
+}
+
+}
+
+abstract class Kunde { Konto konto; }
+
+public class Privatkunde extends Kunde {
+
+private String vorname;
+private String nachname;
+private Adresse postAdresse;
+}
+
+public class Geschäftskunde extends Kunde {
+
+private String firmenname;
+private Adresse domizllAdresse;
+}
+
+public class Adresse {
+
+private String strasse;
+private String hausnummer;
+private String plz;
+private String ort;
+}
