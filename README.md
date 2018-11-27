@@ -1,4 +1,4 @@
-﻿# Alexa Skills Kit SDK Sample - Train your Brain - Gehirnjogging (deutsche Übersetzung)
+﻿# Alexa Skills Kit SDK Sample - Train your Brain - Gehirnjogging
 
 ### Beschreibung
 Anwendung für interaktives Training der geistigen Fähigkeiten.
