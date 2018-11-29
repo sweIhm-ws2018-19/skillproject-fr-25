@@ -1,12 +1,12 @@
-package main.java.gehirnjogging.handlers;
+package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-import java.util.Optional;
+import gehirnjogging.SpeechStrings;
 
-import main.java.gehirnjogging.SpeechStrings;
+import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 

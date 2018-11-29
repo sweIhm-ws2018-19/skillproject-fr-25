@@ -11,33 +11,28 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.gehirnjogging.handlers;
+package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.SessionEndedRequest;
 
 import java.util.Optional;
 
-import org.slf4j.Logger;
+import static com.amazon.ask.request.Predicates.intentName;
 
-import static com.amazon.ask.request.Predicates.requestType;
-import static org.slf4j.LoggerFactory.getLogger;
-
-public class SessionEndedRequestHandler implements RequestHandler {
-	
-	private static Logger LOG = getLogger(SessionEndedRequestHandler.class);
-	
+public class HelpIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(SessionEndedRequest.class));
+        return input.matches(intentName("AMAZON.HelpIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-    	SessionEndedRequest sessionEndedRequest = (SessionEndedRequest) input.getRequestEnvelope().getRequest();
-        LOG.debug("Session ended with reason: " + sessionEndedRequest.getReason().toString());
-        return Optional.empty();
+        return input.getResponseBuilder()
+                .withSpeech("Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die möglichkeiten mitteilen wie Sie weiter machen können. <break time=\"1s\"/> Sagen sie regeln erklären um sich nocheinmal die Spielregeln erklären zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den skill zu beenden  ")
+                .withShouldEndSession(false)
+                .build();
     }
 }

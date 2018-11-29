@@ -11,14 +11,14 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package main.java.gehirnjogging.handlers;
+package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
 
-import main.java.gehirnjogging.SpeechStrings;
+import gehirnjogging.SpeechStrings;
 
 import java.util.Optional;
 
@@ -33,9 +33,8 @@ public class LaunchRequestHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSimpleCard(SpeechStrings.SKILLNAME, SpeechStrings.LAUNCHREQUEST)
-                .withSpeech(SpeechStrings.LAUNCHREQUEST)
-                .withReprompt(SpeechStrings.LAUNCHREQUEST)
+                .withSpeech(SpeechStrings.WELCOME  + "<break time=\"1s\"/>" + SpeechStrings.LAUNCHREQUEST +"<break time=\"1s\"/>"+ "oder schlieﬂen um den Skill zu schlieﬂen")
+                .withReprompt("bist du eingeschlafen ?")
                 .build();
     }
 }
