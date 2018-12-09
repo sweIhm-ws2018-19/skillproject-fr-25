@@ -14,30 +14,25 @@
 package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.LaunchRequest;
-import com.amazon.ask.model.Response;
 
-import gehirnjogging.SpeechStrings;
+import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.Response;
 
 import java.util.Optional;
 
-import static com.amazon.ask.request.Predicates.requestType;
+import static com.amazon.ask.request.Predicates.intentName;
 
-public class LaunchRequestHandler implements RequestHandler {
+public class HelpIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(LaunchRequest.class));
+        return input.matches(intentName("AMAZON.HelpIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-    	SpeechStrings.initializeNumbers();
-    	initializeQuestions();
-    	
         return input.getResponseBuilder()
-                .withSpeech(SpeechStrings.WELCOME  + "<break time=\"1s\"/>" + SpeechStrings.LAUNCHREQUEST +"<break time=\"1s\"/>"+ "oder schließen um den Skill zu schließen")
-                .withReprompt("bist du eingeschlafen ?")
+                .withSpeech("Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die möglichkeiten mitteilen wie Sie weiter machen können. <break time=\"1s\"/> Sagen sie regeln erklären um sich nocheinmal die Spielregeln erklären zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den skill zu beenden  ")
+                .withShouldEndSession(false)
                 .build();
     }
 }

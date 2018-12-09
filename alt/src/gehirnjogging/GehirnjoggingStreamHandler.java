@@ -39,7 +39,9 @@ import gehirnjogging.handlers.RegelHandler;
 import gehirnjogging.handlers.SessionEndedRequestHandler;
 
 
+
 public class GehirnjoggingStreamHandler extends SkillStreamHandler {
+
 
 
     private static Skill getSkill() {
@@ -53,7 +55,8 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
                         new GameStartIntentHandler(),
                         new RegelHandler(),
                         new EndHandler(),
-                        new AntwortHandler(),
+                        new AntwortFalschHandler(),
+                        new AntwortRichtigHandler(),
                         new  SessionEndedRequestHandler())
                 .withSkillId("amzn1.ask.skill.58b4fb46-62fe-4d55-a144-5de47094bc94")
                 .build();
@@ -62,4 +65,5 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
     public GehirnjoggingStreamHandler() {
         super(getSkill());
     }
+
 }

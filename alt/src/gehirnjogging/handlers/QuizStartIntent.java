@@ -20,9 +20,8 @@ public class QuizStartIntent implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		SpeechStrings.getRandom();
 		 return input.getResponseBuilder()
-		            .withSpeech("Hier kommt Frage: " + 	SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0] + "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_countdown_loop_64s_full_01'/>" )
+		            .withSpeech("Hier kommt die erste Frage:  Wie hieﬂ der erste Amerikanische Pr‰sident der USA  Ist es Antwort A <break time=\"1s\"/> George Washington oder Antwort B <break time=\"1s\"/> James Madison oder Antwort C <break time=\"1s\"/> George W. Bush oder Antwort D Abraham Lincoln. <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_countdown_loop_64s_full_01'/>" )
 		            .withReprompt("bist du eingeschlafen ?")
 		            .build();
 	}
