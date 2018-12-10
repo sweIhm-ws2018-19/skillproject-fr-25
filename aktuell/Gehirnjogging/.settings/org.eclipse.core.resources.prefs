@@ -1,2 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/gehirnjogging/SpeechStrings.java=UTF-8
+encoding//src/main/java/gehirnjogging/SpeechStrings.java=UTF-8
+encoding//src/main/java/gehirnjogging/handlers/AntwortHandler.java=UTF-8
