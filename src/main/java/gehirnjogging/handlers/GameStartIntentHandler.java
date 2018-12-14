@@ -8,6 +8,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import gehirnjogging.SpeechStrings;
+
 public class GameStartIntentHandler implements RequestHandler {
 
     @Override
@@ -18,7 +20,7 @@ public class GameStartIntentHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("Gehirnjogging wird gestartet. Kennst du bereits die Spielregeln?  Wenn nicht sage Regeln erklären oder los wenn sie Hilfe benötigen sagen sie Hilfe")
+                .withSpeech(SpeechStrings.WELCOME_V)
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     }

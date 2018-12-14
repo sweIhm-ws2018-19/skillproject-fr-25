@@ -2,6 +2,7 @@ package gehirnjogging.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+
 import java.util.Map;
 import java.util.Optional;
 
@@ -26,27 +27,41 @@ public class AntwortHandler implements RequestHandler {
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AntwortIntent"));
     }
+    /*
+     * DatumJahr
+     * Antwort
+     * Nummber
+     * Sprache 
+     * */
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-
         request = input.getRequestEnvelope().getRequest();
         intentRequest = (IntentRequest) request;
         intent = intentRequest.getIntent();
         slots = intent.getSlots();
-        slots.get("antwort").getValue();
+        if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
+            slots.get("jahres_datum").getValue();
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
+            slots.get("antwort").getValue();
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
+            slots.get("antwort_number").getValue();
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
+            slots.get("antwort_sprache").getValue();
+        }
 
         setTrueAnser();
         checkAnswer();
         if(antwortRichtig == true) {
+            SpeechStrings.richtig++;
             return input.getResponseBuilder()
-                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01'/> Diese Antwort ist richtig. Sagen sie nächste Frage um die nächste Frage zu erhalten oder Beenden wenn du keine Lust mehr hast")
+                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
         } 
         else {
             return input.getResponseBuilder()
-                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01'/> Diese Antwort ist falsch. Sagen sie nächste Frage um die nächste Frage zu erhalten oder Beenden wenn du keine Lust mehr hast")
+                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Das war leider nicht richtig. Aber versuch es mit der nächsten Frage doch gleich noch einmal.")
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
         }
@@ -59,13 +74,31 @@ public class AntwortHandler implements RequestHandler {
     }
 
     void checkAnswer() {
-        if (slots.get("antwort").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-            antwortRichtig = true;
-            SpeechStrings.richtig += 1;
-            SpeechStrings.counter += 1;
-        } else {
-            antwortRichtig = false;
-            SpeechStrings.counter += 1;
-        }
+        if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
+
+            if (slots.get("jahres_datum").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+                antwortRichtig = true;
+            } else {
+                antwortRichtig = false;
+            }
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
+            if (slots.get("antwort").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+                antwortRichtig = true;
+            } else {
+                antwortRichtig = false;
+            }
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
+            if (slots.get("antwort_number").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+                antwortRichtig = true;
+            } else {
+                antwortRichtig = false;
+            }
+        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
+            if (slots.get("antwort_sprache").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+                antwortRichtig = true;
+            } else {
+                antwortRichtig = false;
+            }
+        } 
     }
 }

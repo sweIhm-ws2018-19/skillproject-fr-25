@@ -31,11 +31,12 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+        SpeechStrings.newGame();
         SpeechStrings.initializeNumbers();
         SpeechStrings.initializeQuestions();
 
         return input.getResponseBuilder()
-                .withSpeech(SpeechStrings.WELCOME  + "<break time=\"1s\"/>" + " " + SpeechStrings.LAUNCHREQUEST + "<break time=\"1s\"/>" + " oder schlieﬂen um den Skill zu schlieﬂen")
+                .withSpeech(SpeechStrings.WELCOME)
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     }

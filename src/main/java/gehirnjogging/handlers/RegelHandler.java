@@ -17,7 +17,7 @@ public class RegelHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("Du bekommst eine Frage gestellt welche Sie beantworten müssen <break time=\"1s\"/> um das Quiz zu starten sage los !")
+                .withSpeech("Möchtest du etwas über den Spielablauf oder die Punktvergabe wissen?")
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     }

@@ -18,10 +18,18 @@ public class QuizStartIntent implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		 SpeechStrings.getRandom();
-		 return input.getResponseBuilder()
-		            .withSpeech("Hier kommt Frage " + SpeechStrings.counter + ": " + SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0] + "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_countdown_loop_64s_full_01'/>" )
-		            .withReprompt("bist du eingeschlafen ?")
-		            .build();
+	    if (SpeechStrings.random >= 0) {
+	        SpeechStrings.getRandom();
+	        SpeechStrings.counter += 1;
+	         return input.getResponseBuilder()
+	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + SpeechStrings.counter + ": " + SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0])
+	                    .withReprompt("möchtet ihr, dass ich die Frage wiederhole?")
+	                    .build();
+	    } else {
+	        return input.getResponseBuilder()
+	                .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_clear_throat_ahem_01'/>" +" Leider gibt es keine Fragen mehr. Der Spieler hat " +  SpeechStrings.richtig + " von " + SpeechStrings.counter + " Fragen richtig beantwortet. <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Schön, dass du da warst! Ich hoffe wir sehen uns bald wieder zu einem spannenden Spiel! Machs gut!")
+	                .withShouldEndSession(true)
+	                .build();
+	    }
 	}
 }

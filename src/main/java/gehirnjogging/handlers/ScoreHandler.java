@@ -10,19 +10,18 @@ import com.amazon.ask.model.Response;
 
 import gehirnjogging.SpeechStrings;
 
-public class EndHandler implements RequestHandler { 
 
+public class ScoreHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("EndIntent"));
+        return input.matches(intentName("ScoreIntent"));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
-                .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_clear_throat_ahem_01'/>" +"Der Spieler hat " +  SpeechStrings.richtig + " von " + SpeechStrings.counter + " Fragen richtig beantwortet. <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Schön, dass du da warst! Ich hoffe wir sehen uns bald wieder zu einem spannenden Spiel! Machs gut!")
+                .withSpeech("Sie haben derzeit von " + SpeechStrings.counter + " Fragen" + SpeechStrings.richtig +" Richtig beantwortet um weiter zu spielen sagen sie los")
                 .withReprompt("bist du eingeschlafen ?")
-                .withShouldEndSession(true)
                 .build();
     }
 }
