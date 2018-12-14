@@ -10,7 +10,6 @@
      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for
      the specific language governing permissions and limitations under the License.
 */
-
 package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -32,7 +31,7 @@ public class HelpIntentHandler implements RequestHandler {
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
 		return input.getResponseBuilder().withSpeech(
-				"Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die Möglichkeiten mitteilen wie Sie weiter machen können. <break time=\"1s\"/> Sagen sie Regeln erklären um sich noch einmal die Spielregeln erklären zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den Skill zu beenden  ")
+				"Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die Muglichkeiten mitteilen wie Sie weiter machen kunnen. <break time=\"1s\"/> Sagen sie Regeln erklaren um sich noch einmal die Spielregeln erklaren zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den Skill zu beenden  ")
 				.withShouldEndSession(false).build();
 	}
 }
