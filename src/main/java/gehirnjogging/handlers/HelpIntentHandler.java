@@ -23,17 +23,16 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class HelpIntentHandler implements RequestHandler {
-    
-    @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.HelpIntent"));
-    }
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        return input.getResponseBuilder()
-                .withSpeech("Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die Möglichkeiten mitteilen wie Sie weiter machen können. <break time=\"1s\"/> Sagen sie Regeln erklären um sich noch einmal die Spielregeln erklären zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den Skill zu beenden  ")
-                .withShouldEndSession(false)
-                .build();
-    }
+	@Override
+	public boolean canHandle(HandlerInput input) {
+		return input.matches(intentName("AMAZON.HelpIntent"));
+	}
+
+	@Override
+	public Optional<Response> handle(HandlerInput input) {
+		return input.getResponseBuilder().withSpeech(
+				"Willkommen bei der Train Your Brain Hilfe Abteilung ? <break time=\"1s\"/> Ich werde Ihnen nun nocheinmal die MÃ¶glichkeiten mitteilen wie Sie weiter machen kÃ¶nnen. <break time=\"1s\"/> Sagen sie Regeln erklÃ¤ren um sich noch einmal die Spielregeln erklÃ¤ren zu lassen <break time=\"1s\"/> oder los um das Quiz zu starten <break time=\"1s\"/> oder Beenden  um den Skill zu beenden  ")
+				.withShouldEndSession(false).build();
+	}
 }

@@ -2,7 +2,6 @@ package gehirnjogging.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-
 import java.util.Map;
 import java.util.Optional;
 
@@ -17,107 +16,97 @@ import gehirnjogging.SpeechStrings;
 
 public class AntwortHandler implements RequestHandler {
 
-    boolean antwortRichtig=true;
-    private Request request;
-    private IntentRequest intentRequest;
-    private Intent intent;
-    private Map<String, Slot> slots = null;
+	boolean antwortRichtig = true;
+	private Request request;
+	private IntentRequest intentRequest;
+	private Intent intent;
+	private Map<String, Slot> slots = null;
 
-    @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AntwortIntent"));
-    }
-    /*
-     * DatumJahr
-     * Antwort
-     * Nummber
-     * Sprache 
-     * */
+	@Override
+	public boolean canHandle(HandlerInput input) {
+		return input.matches(intentName("AntwortIntent"));
+	}
+	/*
+	 * DatumJahr Antwort Nummber Sprache
+	 */
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        request = input.getRequestEnvelope().getRequest();
-        intentRequest = (IntentRequest) request;
-        intent = intentRequest.getIntent();
-        slots = intent.getSlots();
-        if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
-            slots.get("jahres_datum").getValue();
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
-            slots.get("antwort").getValue();
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
-            slots.get("antwort_number").getValue();
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
-            slots.get("antwort_sprache").getValue();
-        }
+	@Override
+	public Optional<Response> handle(HandlerInput input) {
+		request = input.getRequestEnvelope().getRequest();
+		intentRequest = (IntentRequest) request;
+		intent = intentRequest.getIntent();
+		slots = intent.getSlots();
+		if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
+			slots.get("jahres_datum").getValue();
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
+			slots.get("antwort").getValue();
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
+			slots.get("antwort_number").getValue();
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
+			slots.get("antwort_sprache").getValue();
+		}
 
-        setTrueAnser();
-        checkAnswer();
-        if(antwortRichtig == true) {
-            SpeechStrings.richtig++;
-            SpeechStrings.zufallszahl();
-            if(SpeechStrings.richtigAntwortZahl==1) {
-             	return input.getResponseBuilder()
-                        .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Toll, die Antwort war richtig, wenn du weitermachen möchtest sage „nächste Aufgabe“")
-                        .withReprompt("bist du eingeschlafen ?")
-                        .build();
-            }else if(SpeechStrings.richtigAntwortZahl==2) {
-             	return input.getResponseBuilder()
-                        .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Die Antwort ist richtig. Lass uns mit der nächsten Aufgabe weitermachen. Wenn du bereit bist sage „nächste Frage“")
-                        .withReprompt("bist du eingeschlafen ?")
-                        .build();
-        }else if(SpeechStrings.richtigAntwortZahl==3) {
-         	return input.getResponseBuilder()
-                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
-    }else{
-    	return input.getResponseBuilder()
-                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
-    }
-            
-        
-    } else {
-            return input.getResponseBuilder()
-                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
-        }
-    }
+		setTrueAnser();
+		checkAnswer();
+		if (antwortRichtig == true) {
+			SpeechStrings.richtig++;
+			SpeechStrings.zufallszahl();
+			if (SpeechStrings.richtigAntwortZahl == 1) {
+				return input.getResponseBuilder().withSpeech(
+						" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Toll, die Antwort war richtig, wenn du weitermachen möchtest sage „nächste Aufgabe“")
+						.withReprompt("bist du eingeschlafen ?").build();
+			} else if (SpeechStrings.richtigAntwortZahl == 2) {
+				return input.getResponseBuilder().withSpeech(
+						" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Die Antwort ist richtig. Lass uns mit der nächsten Aufgabe weitermachen. Wenn du bereit bist sage „nächste Frage“")
+						.withReprompt("bist du eingeschlafen ?").build();
+			} else if (SpeechStrings.richtigAntwortZahl == 3) {
+				return input.getResponseBuilder().withSpeech(
+						" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
+						.withReprompt("bist du eingeschlafen ?").build();
+			} else {
+				return input.getResponseBuilder().withSpeech(
+						" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
+						.withReprompt("bist du eingeschlafen ?").build();
+			}
 
+		} else {
+			return input.getResponseBuilder().withSpeech(
+					"<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
+					.withReprompt("bist du eingeschlafen ?").build();
+		}
+	}
 
-    //RICHTIGE_ANTWORT_NUMBER setzten 
-    void setTrueAnser() {
-        SpeechStrings.RICHTIGE_ANTWORT =  SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][1];
-    }
+	// RICHTIGE_ANTWORT_NUMBER setzten
+	void setTrueAnser() {
+		SpeechStrings.RICHTIGE_ANTWORT = SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][1];
+	}
 
-    void checkAnswer() {
-        if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
+	void checkAnswer() {
+		if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("DatumJahr")) {
 
-            if (slots.get("jahres_datum").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-                antwortRichtig = true;
-            } else {
-                antwortRichtig = false;
-            }
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
-            if (slots.get("antwort").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-                antwortRichtig = true;
-            } else {
-                antwortRichtig = false;
-            }
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
-            if (slots.get("antwort_number").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-                antwortRichtig = true;
-            } else {
-                antwortRichtig = false;
-            }
-        }else if(SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
-            if (slots.get("antwort_sprache").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-                antwortRichtig = true;
-            } else {
-                antwortRichtig = false;
-            }
-        } 
-    }
+			if (slots.get("jahres_datum").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+				antwortRichtig = true;
+			} else {
+				antwortRichtig = false;
+			}
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Antwort")) {
+			if (slots.get("antwort").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+				antwortRichtig = true;
+			} else {
+				antwortRichtig = false;
+			}
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Number")) {
+			if (slots.get("antwort_number").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+				antwortRichtig = true;
+			} else {
+				antwortRichtig = false;
+			}
+		} else if (SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][2].equalsIgnoreCase("Sprache")) {
+			if (slots.get("antwort_sprache").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
+				antwortRichtig = true;
+			} else {
+				antwortRichtig = false;
+			}
+		}
+	}
 }

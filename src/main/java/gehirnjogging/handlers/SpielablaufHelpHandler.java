@@ -10,7 +10,7 @@ import com.amazon.ask.model.Response;
 
 import gehirnjogging.SpeechStrings;
 
-public class SpielablaufHelpHandler  implements RequestHandler {
+public class SpielablaufHelpHandler implements RequestHandler {
 
 	@Override
 	public boolean canHandle(HandlerInput input) {
@@ -19,10 +19,9 @@ public class SpielablaufHelpHandler  implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		 SpeechStrings.getRandom();
-		 return input.getResponseBuilder()
-		            .withSpeech("Das Spiel beginnt damit, dass zuerst alle Mitspieler abgefragt werden. Gleich danach geht es los mit den ersten Fragen, je nachdem ob man alleine oder mit Freunden spielt werden nun die Fragen gestellt. Am Ende werden die Punkte verkündet und das Ranking im High Score mitgeteilt. Wenn man möchte kann man gleich anschließend eine neue Runde beginnen oder das Spiel beenden. Während des Spiels kann die Runde jederzeit unterbrochen oder abgebrochen werden.  Wenn du keine weiteren Fragen hast sage los" )
-		            .withReprompt("bist du eingeschlafen ?")
-		            .build();
+		SpeechStrings.getRandom();
+		return input.getResponseBuilder().withSpeech(
+				"Das Spiel beginnt damit, dass zuerst alle Mitspieler abgefragt werden. Gleich danach geht es los mit den ersten Fragen, je nachdem ob man alleine oder mit Freunden spielt werden nun die Fragen gestellt. Am Ende werden die Punkte verkï¿½ndet und das Ranking im High Score mitgeteilt. Wenn man mï¿½chte kann man gleich anschlieï¿½end eine neue Runde beginnen oder das Spiel beenden. Wï¿½hrend des Spiels kann die Runde jederzeit unterbrochen oder abgebrochen werden.  Wenn du keine weiteren Fragen hast sage los")
+				.withReprompt("bist du eingeschlafen ?").build();
 	}
 }

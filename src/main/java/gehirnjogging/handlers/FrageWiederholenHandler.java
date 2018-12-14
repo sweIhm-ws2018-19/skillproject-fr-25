@@ -10,19 +10,18 @@ import com.amazon.ask.model.Response;
 
 import gehirnjogging.SpeechStrings;
 
+public class FrageWiederholenHandler implements RequestHandler {
 
-public class FrageWiederholenHandler  implements RequestHandler { 
+	@Override
+	public boolean canHandle(HandlerInput input) {
+		return input.matches(intentName("FrageWiederholenIntent"));
+	}
 
-    @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("FrageWiederholenIntent"));
-    }
-
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-   	 return input.getResponseBuilder()
-	            .withSpeech("Hier kommt nocheinmal die Frage " + SpeechStrings.counter + ": " + SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0])
-	            .withReprompt("bist du eingeschlafen ?")
-	            .build();
-}
+	@Override
+	public Optional<Response> handle(HandlerInput input) {
+		return input.getResponseBuilder()
+				.withSpeech("Hier kommt nocheinmal die Frage " + SpeechStrings.counter + ": "
+						+ SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0])
+				.withReprompt("bist du eingeschlafen ?").build();
+	}
 }

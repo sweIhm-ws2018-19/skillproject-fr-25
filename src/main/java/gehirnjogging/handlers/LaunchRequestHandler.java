@@ -23,21 +23,19 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.requestType;
 
 public class LaunchRequestHandler implements RequestHandler {
-    
-    @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(requestType(LaunchRequest.class));
-    }
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        SpeechStrings.newGame();
-        SpeechStrings.initializeNumbers();
-        SpeechStrings.initializeQuestions();
+	@Override
+	public boolean canHandle(HandlerInput input) {
+		return input.matches(requestType(LaunchRequest.class));
+	}
 
-        return input.getResponseBuilder()
-                .withSpeech(SpeechStrings.WELCOME)
-                .withReprompt("bist du eingeschlafen ?")
-                .build();
-    }
+	@Override
+	public Optional<Response> handle(HandlerInput input) {
+		SpeechStrings.newGame();
+		SpeechStrings.initializeNumbers();
+		SpeechStrings.initializeQuestions();
+
+		return input.getResponseBuilder().withSpeech(SpeechStrings.WELCOME).withReprompt("bist du eingeschlafen ?")
+				.build();
+	}
 }
