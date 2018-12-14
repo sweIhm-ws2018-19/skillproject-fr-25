@@ -54,14 +54,33 @@ public class AntwortHandler implements RequestHandler {
         checkAnswer();
         if(antwortRichtig == true) {
             SpeechStrings.richtig++;
-            return input.getResponseBuilder()
+            SpeechStrings.zufallszahl();
+            if(SpeechStrings.richtigAntwortZahl==1) {
+             	return input.getResponseBuilder()
+                        .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Toll, die Antwort war richtig, wenn du weitermachen möchtest sage „nächste Aufgabe“")
+                        .withReprompt("bist du eingeschlafen ?")
+                        .build();
+            }else if(SpeechStrings.richtigAntwortZahl==2) {
+             	return input.getResponseBuilder()
+                        .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Die Antwort ist richtig. Lass uns mit der nächsten Aufgabe weitermachen. Wenn du bereit bist sage „nächste Frage“")
+                        .withReprompt("bist du eingeschlafen ?")
+                        .build();
+        }else if(SpeechStrings.richtigAntwortZahl==3) {
+         	return input.getResponseBuilder()
+                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
+                    .withReprompt("bist du eingeschlafen ?")
+                    .build();
+    }else{
+    	return input.getResponseBuilder()
                     .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
-        } 
-        else {
+    }
+            
+        
+    } else {
             return input.getResponseBuilder()
-                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Das war leider nicht richtig. Aber versuch es mit der nächsten Frage doch gleich noch einmal.")
+                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
         }

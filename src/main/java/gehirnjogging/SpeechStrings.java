@@ -2,12 +2,13 @@ package gehirnjogging;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 public class SpeechStrings {
     
     public static final String SKILLNAME = "Gehirnjogging.";
     public static final String WELCOME = "Willkommen bei Train your Brain Gehirnjogging. <break time=\"1s\"/>?  Bist du bereit gleich los zulegen?";
-    public static final String WELCOME_V = "Ok gut, sollen wir gleich loslegen oder möchtest du noch kurz die Spielregeln hören?";
+    public static final String WELCOME_V = "Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören oder bist du schon bereit für die erste frage?";
     public static final String WELCOME_REPROMPT = "Bist du noch da <break time=\"1s\"/>? Der Gehirnjogging Skill ist bereits offen.";
     public static final String ENDQUIZ = "Ich moechte das Gehirnjogging beenden.";
     public static final String STARTQUIZ = "Starte das Gehirnjogging.";
@@ -21,6 +22,7 @@ public class SpeechStrings {
     public static int counter = 0;
     public static int size = 10;
     public static int random = size - 1;
+    public static int richtigAntwortZahl = 0;
     public static String[][] questions;
     public static ArrayList<Integer> numbers;
     /*
@@ -94,7 +96,11 @@ public class SpeechStrings {
         numbers = new ArrayList<Integer>();
     }
     
-    
+    //zahl zwischen 1und4->1,2,3,4
+    public static void zufallszahl(){
+        Random random = new Random();
+    	richtigAntwortZahl= random.nextInt(4 - 1 + 1) + 1;
+      }
     
     
 

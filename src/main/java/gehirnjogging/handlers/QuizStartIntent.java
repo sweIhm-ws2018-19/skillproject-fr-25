@@ -23,7 +23,7 @@ public class QuizStartIntent implements RequestHandler {
 	        SpeechStrings.counter += 1;
 	         return input.getResponseBuilder()
 	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + SpeechStrings.counter + ": " + SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][0])
-	                    .withReprompt("möchtet ihr, dass ich die Frage wiederhole?")
+	                    .withReprompt("möchtet du, dass ich die Frage wiederhole?")
 	                    .build();
 	    } else {
 	        return input.getResponseBuilder()
