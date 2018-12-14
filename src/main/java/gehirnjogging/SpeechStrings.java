@@ -23,8 +23,8 @@ public class SpeechStrings {
     public static int size = 10;
     public static int random = size - 1;
     public static int richtigAntwortZahl = 0;
-    public static String[][] questions;
-    public static ArrayList<Integer> numbers;
+    public static String[][] questions = new String[10][3];
+    public static ArrayList<Integer> numbers = new ArrayList<>();
     /*
      * DatumJahr
      * Antwort
