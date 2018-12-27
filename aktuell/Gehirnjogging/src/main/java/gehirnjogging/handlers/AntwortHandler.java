@@ -2,7 +2,6 @@ package gehirnjogging.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-import java.util.Map;
 import java.util.Optional;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -11,61 +10,138 @@ import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.Slot;
-import gehirnjogging.SpeechStrings;
+
+import gehirnjogging.Logic;
 
 public class AntwortHandler implements RequestHandler {
 
-    boolean antwortRichtig=true;
-    private Request request;
-    private IntentRequest intentRequest;
-    private Intent intent;
-    private Map<String, Slot> slots = null;
+	
+	private Request request;
+	private IntentRequest intentRequest;
+	private Intent intent;
+	
 
-    @Override
-    public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AntwortIntent"));
-    }
+	@Override
+	public boolean canHandle(HandlerInput input) {
+		return input.matches(intentName("AntwortIntent"));
+				
+	}
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
+	@Override
+	public Optional<Response> handle(HandlerInput input) {
+		//Eintelspieler
+		if (Logic.EINSTELLUNGS_COUNTER_R == 1&&(Logic.STATUS_ID==2||Logic.STATUS_ID==5)) {
+		       request = input.getRequestEnvelope().getRequest();
+		        intentRequest = (IntentRequest) request;
+		        intent = intentRequest.getIntent();
+		        Logic.slots = intent.getSlots();
+			
+			Logic.setTrueAnser();
+			Logic.checkAnswer();
+			
+			if (Logic.antwortRichtig == true) {
+				Logic.richtig++;
+				Logic.zufallszahl();
+				
+				if (Logic.richtigAntwortZahl == 1) {
+					return input.getResponseBuilder().withSpeech(
+							" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Toll, die Antwort war richtig, wenn du weitermachen möchtest sage „nächste Aufgabe“")
+							.withReprompt("bist du eingeschlafen ?").build();
+				} else if (Logic.richtigAntwortZahl == 2) {
+					return input.getResponseBuilder().withSpeech(
+							" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Die Antwort ist richtig. Lass uns mit der nächsten Aufgabe weitermachen. Wenn du bereit bist sage „nächste Frage“")
+							.withReprompt("bist du eingeschlafen ?").build();
+				} else if (Logic.richtigAntwortZahl == 3) {
+					return input.getResponseBuilder().withSpeech(
+							" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
+							.withReprompt("bist du eingeschlafen ?").build();
+				} else {
+					
+					return input.getResponseBuilder().withSpeech(
+							" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
+							.withReprompt("bist du eingeschlafen ?").build();
+				}
 
-        request = input.getRequestEnvelope().getRequest();
-        intentRequest = (IntentRequest) request;
-        intent = intentRequest.getIntent();
-        slots = intent.getSlots();
-        slots.get("antwort").getValue();
+			} else {
+				return input.getResponseBuilder().withSpeech(
+						"<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
+						.withReprompt("bist du eingeschlafen ?").build();
+			}
+		} else if(Logic.EINSTELLUNGS_COUNTER_R != 1&&(Logic.STATUS_ID==2||Logic.STATUS_ID==5)) {
+		  //Mehrspieler
+	        request = input.getRequestEnvelope().getRequest();
+	        intentRequest = (IntentRequest) request;
+	        intent = intentRequest.getIntent();
+	        Logic.slots = intent.getSlots();
 
-        setTrueAnser();
-        checkAnswer();
-        if(antwortRichtig == true) {
-            return input.getResponseBuilder()
-                    .withSpeech(" <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_01'/> Diese Antwort ist richtig. Sagen sie nächste Frage um die nächste Frage zu erhalten oder Beenden wenn du keine Lust mehr hast")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
-        } 
-        else {
-            return input.getResponseBuilder()
-                    .withSpeech("<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_01'/> Diese Antwort ist falsch. Sagen sie nächste Frage um die nächste Frage zu erhalten oder Beenden wenn du keine Lust mehr hast")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
-        }
-    }
+	    	Logic.setTrueAnser();
+			Logic.checkAnswer();
 
+	        
+	        if (Logic.antwortRichtig == true) {
+	            Logic.givePoint();
+	            Logic.richtig++;
+	            Logic.zufallszahl();
+	            if (Logic.richtigAntwortZahl == 1) {
+	                return input.getResponseBuilder().withSpeech(
+	                        " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Toll, die Antwort war richtig, wenn du weitermachen möchtest sage „nächste Aufgabe“")
+	                        .withReprompt("bist du eingeschlafen ?").build();
+	            } else if (Logic.richtigAntwortZahl == 2) {
+	                return input.getResponseBuilder().withSpeech(
+	                        " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Die Antwort ist richtig. Lass uns mit der nächsten Aufgabe weitermachen. Wenn du bereit bist sage „nächste Frage“")
+	                        .withReprompt("bist du eingeschlafen ?").build();
+	            } else if (Logic.richtigAntwortZahl == 3) {
+	                return input.getResponseBuilder().withSpeech(
+	                        " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
+	                        .withReprompt("bist du eingeschlafen ?").build();
+	            } else {
+	                return input.getResponseBuilder().withSpeech(
+	                        " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
+	                        .withReprompt("bist du eingeschlafen ?").build();
+	            }
 
-    //RICHTIGE_ANTWORT_NUMBER setzten 
-    void setTrueAnser() {
-        SpeechStrings.RICHTIGE_ANTWORT =  SpeechStrings.questions[SpeechStrings.FRAGE_NUMBER][1];
-    }
-
-    void checkAnswer() {
-        if (slots.get("antwort").getValue().equalsIgnoreCase(SpeechStrings.RICHTIGE_ANTWORT)) {
-            antwortRichtig = true;
-            SpeechStrings.richtig += 1;
-            SpeechStrings.counter += 1;
-        } else {
-            antwortRichtig = false;
-            SpeechStrings.counter += 1;
-        }
-    }
+	        } else {
+	            return input.getResponseBuilder().withSpeech(
+	                    "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
+	                    .withReprompt("bist du eingeschlafen ?").build();
+	        }
+		}
+	    /**
+	     *    Logic.STATUS_ID
+	     * 0| Willkommen (Begrüßung)
+	     * 1| Bereit loszulegen oder Regeln
+	     * 2| Frage wird gestellt
+	     * 3| Spieleinstellungen
+	     * 4| 
+	     * 5| Antwort 
+	     * 6| Platzhalter
+	     * 7| Spielende
+	     */
+		if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==1) {
+			return input.getResponseBuilder()
+		               .withSpeech("Ich habe dich nicht verstanden Möchtest du alleine Spielen ? du kannst mit Ja oder Nein Antworten")
+		               .withReprompt("Möchtest du alleine spielen?")
+		               .build();
+		}else if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==3) {
+			return input.getResponseBuilder()
+		               .withSpeech("Ich habe dich nicht verstanden. Wie viele Spieler seid ihr? Antworte mit 2 Spieler oder 3 Spieler ? ")
+		               .withReprompt("Antworte mit 2 Spieler oder 3 Spieler ?")
+		               .build();
+		}else if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==2) {
+			return input.getResponseBuilder()
+		               .withSpeech("Ich habe dich nicht verstanden. Wie viele Fragen sollen gespielt werden ? Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
+		               .withReprompt("Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
+		               .build();
+		
+	}else if(Logic.STATUS_ID==1&&Logic.EINSTELLUNGS_ID==2) {
+		return input.getResponseBuilder()
+	               .withSpeech("Ich habe dich nicht verstanden. Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? Antworte mit Ja oder nein")
+	               .withReprompt("Antworte mit Ja oder nein")
+	               .build();
+	}
+	     return input.getResponseBuilder()
+	               .withSpeech("Tut mir Leid ich habe sie nicht verstanden Infos: Status ID "+Logic.STATUS_ID+" Einstelugns ID "+Logic.EINSTELLUNGS_ID)
+	               .withReprompt("bist du eingeschlafen ?")
+	               .build();
+	}
 }

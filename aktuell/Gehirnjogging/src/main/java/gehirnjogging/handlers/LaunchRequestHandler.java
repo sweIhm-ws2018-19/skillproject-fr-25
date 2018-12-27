@@ -17,7 +17,9 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import gehirnjogging.Logic;
 import gehirnjogging.SpeechStrings;
+
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
@@ -31,11 +33,14 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        SpeechStrings.initializeNumbers();
-        SpeechStrings.initializeQuestions();
-
+        String welcome = Logic.pickPhrase(SpeechStrings.WELCOME);
+        Logic.newGame();
+        Logic.initializeNumbers();
+        Logic.initializeQuestions();
+        Logic.STATUS_ID = 0;
+        Logic.inizialPoints();
         return input.getResponseBuilder()
-                .withSpeech(SpeechStrings.WELCOME  + "<break time=\"1s\"/>" + " " + SpeechStrings.LAUNCHREQUEST + "<break time=\"1s\"/>" + " oder schlieﬂen um den Skill zu schlieﬂen")
+                .withSpeech(welcome)
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     }

@@ -8,18 +8,22 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import gehirnjogging.Logic;
+
 public class GameStartIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("StarteIntent"));
+        return (input.matches(intentName("StarteIntent").or(intentName("AMAZON.YesIntent")))&&Logic.STATUS_ID==0);
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        return input.getResponseBuilder()
-                .withSpeech("Gehirnjogging wird gestartet. Kennst du bereits die Spielregeln?  Wenn nicht sage Regeln erklären oder los wenn sie Hilfe benötigen sagen sie Hilfe")
-                .withReprompt("bist du eingeschlafen ?")
-                .build();
+   	 Logic.EINSTELLUNGS_ID=1;
+     Logic.STATUS_ID=3;
+     return input.getResponseBuilder()
+               .withSpeech("Möchtest du alleine spielen?")
+               .withReprompt("bist du eingeschlafen ?")
+               .build();
     }
 }
