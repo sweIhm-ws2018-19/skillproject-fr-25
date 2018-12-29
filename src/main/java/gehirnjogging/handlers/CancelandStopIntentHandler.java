@@ -17,6 +17,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import gehirnjogging.Logic;
 import gehirnjogging.SpeechStrings;
 
 import java.util.Optional;
@@ -24,14 +25,19 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class CancelandStopIntentHandler implements RequestHandler {
-	@Override
-	public boolean canHandle(HandlerInput input) {
-		return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
-	}
+    @Override
+    public boolean canHandle(HandlerInput input) {
+        return input.matches(intentName("AMAZON.StopIntent").or(intentName("AMAZON.CancelIntent")));
+    }
 
-	@Override
-	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder().withSpeech(SpeechStrings.STOP)
-				.withSimpleCard(SpeechStrings.WELCOME, SpeechStrings.STOP).build();
-	}
+    @Override
+    public Optional<Response> handle(HandlerInput input) {
+        
+        String welcome = Logic.pickPhrase(SpeechStrings.WELCOME);
+        
+        return input.getResponseBuilder()
+                .withSpeech(SpeechStrings.STOP)
+                .withSimpleCard(welcome, SpeechStrings.STOP)
+                .build();
+    }
 }

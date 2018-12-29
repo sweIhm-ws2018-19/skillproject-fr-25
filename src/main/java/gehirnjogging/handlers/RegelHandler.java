@@ -7,17 +7,20 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-public class RegelHandler implements RequestHandler {
+import gehirnjogging.Logic;
 
-	@Override
-	public boolean canHandle(HandlerInput input) {
-		return input.matches(intentName("RegelIntent"));
-	}
+public class RegelHandler implements RequestHandler { 
 
-	@Override
-	public Optional<Response> handle(HandlerInput input) {
-		return input.getResponseBuilder()
-				.withSpeech("MÃ¶chtest du etwas Ã¼ber den Spielablauf oder die Punktvergabe wissen?")
-				.withReprompt("bist du eingeschlafen ?").build();
-	}
+    @Override
+    public boolean canHandle(HandlerInput input) {
+        return input.matches(intentName("RegelIntent"))&&Logic.STATUS_ID!=4;
+    }
+
+    @Override
+    public Optional<Response> handle(HandlerInput input) {
+        return input.getResponseBuilder()
+                .withSpeech("Möchtest du etwas über den Spielablauf oder die Punktvergabe wissen?")
+                .withReprompt("bist du eingeschlafen ?")
+                .build();
+    }
 }

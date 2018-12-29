@@ -23,12 +23,16 @@ import gehirnjogging.handlers.FrageWiederholenHandler;
 import gehirnjogging.handlers.GameStartIntentHandler;
 import gehirnjogging.handlers.HelpIntentHandler;
 import gehirnjogging.handlers.LaunchRequestHandler;
+import gehirnjogging.handlers.MehrspielerHandler;
+import gehirnjogging.handlers.NoHandler;
+import gehirnjogging.handlers.PauseHandler;
 import gehirnjogging.handlers.PunktvergabeHelpHandler;
-import gehirnjogging.handlers.QuizStartIntent;
+import gehirnjogging.handlers.QuizStartIntentHandler;
 import gehirnjogging.handlers.RegelHandler;
 import gehirnjogging.handlers.ScoreHandler;
 import gehirnjogging.handlers.SessionEndedRequestHandler;
 import gehirnjogging.handlers.SpielablaufHelpHandler;
+import gehirnjogging.handlers.YesHandler;
 import gehirnjogging.handlers.AntwortHandler;
 
 public class GehirnjoggingStreamHandler extends SkillStreamHandler {
@@ -38,7 +42,7 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
         return Skills.standard()
                 .addRequestHandlers(
                         new LaunchRequestHandler(),
-                        new QuizStartIntent(),
+                        new QuizStartIntentHandler(),
                         new ScoreHandler(),
                         new FrageWiederholenHandler(),
                         new CancelandStopIntentHandler(),
@@ -47,10 +51,18 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
                         new GameStartIntentHandler(),
                         new RegelHandler(),
                         new EndHandler(),
+                        new YesHandler(),
+                        new MehrspielerHandler(),
+                        new NoHandler(),
+                        new EndHandler(),
+                        new PauseHandler(),
+                        new EndHandler(),
                         new AntwortHandler(),
                         new SpielablaufHelpHandler(),
                         new PunktvergabeHelpHandler(),
                         new SessionEndedRequestHandler())
+                .withTableName("GehirnjoggingData")
+                .withAutoCreateTable(true)
                 .withSkillId("amzn1.ask.skill.58b4fb46-62fe-4d55-a144-5de47094bc94")
                 .build();
     }

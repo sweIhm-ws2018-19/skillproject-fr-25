@@ -7,11 +7,6 @@
 	<version>1.0</version>
 	<name>Gehirnjogging</name>
 	<url>http://developer.amazon.com/ask</url>
-	
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-	
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
@@ -42,24 +37,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>2.23.4</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-		<groupId>org.mockito</groupId>
-		<artifactId>mockito-all</artifactId>
-		<version>1.9.5</version>
-		<scope>test</scope>
-	</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>RELEASE</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
