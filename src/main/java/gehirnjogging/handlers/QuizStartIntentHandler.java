@@ -30,7 +30,7 @@ public class QuizStartIntentHandler implements RequestHandler {
 	        Logic.counter += 1;
 	         return input.getResponseBuilder()
 	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-	                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
+	                    .withReprompt("Möchtet du, dass ich die Frage wiederhole? sadasdad")
 	                    .build();
 	    } else {
 	        return input.getResponseBuilder()

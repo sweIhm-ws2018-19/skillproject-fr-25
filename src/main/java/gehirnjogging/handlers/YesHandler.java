@@ -54,13 +54,13 @@ public class YesHandler implements RequestHandler {
             Logic.fragenWiederholung++;
             return input.getResponseBuilder()
                     .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
+                    .withReprompt("Möchtet du, dass ich die Frage wiederhole? ásdoa´soda")
                     .build();
         }else if(Logic.STATUS_ID==3) {
             if (Logic.EINSTELLUNGS_ID == 5) {
                 return input.getResponseBuilder()
                         .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                        .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
+                        .withReprompt("Möchtet du, dass ich die Frage wiederhole? ßsidßasid")
                         .build();
             }
             Logic.EINSTELLUNGS_ID=2;
@@ -80,7 +80,7 @@ public class YesHandler implements RequestHandler {
                 Logic.counter += 1;
                 return input.getResponseBuilder()
                         .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                        .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
+                        .withReprompt("Möchtet du, dass ich die Frage wiederhole? 121233213")
                         .build();
             } else {
                 return input.getResponseBuilder()

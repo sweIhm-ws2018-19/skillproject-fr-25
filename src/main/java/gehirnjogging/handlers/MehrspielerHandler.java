@@ -22,7 +22,7 @@ public class MehrspielerHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("EinstellungsIntent"))&&(Logic.STATUS_ID==2 || Logic.STATUS_ID==3);
+    	return input.matches(intentName("EinstellungsIntent"))&&(Logic.STATUS_ID==2 || Logic.STATUS_ID==3);
     }
 
     @Override
@@ -32,13 +32,13 @@ public class MehrspielerHandler implements RequestHandler {
         intent = intentRequest.getIntent();
         slots = intent.getSlots();
 
-
+        
         if(Logic.EINSTELLUNGS_ID==0) {
             Logic.EINSTELLUNGS_ID=1;
             Logic.STATUS_ID=1;
             return input.getResponseBuilder()
                     .withSpeech("Möchtest du alleine spielen?")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withReprompt("Du kannst mit ja oder nein antworten")
                     .build();
 
         }else if(Logic.EINSTELLUNGS_ID==1) {
@@ -81,11 +81,11 @@ public class MehrspielerHandler implements RequestHandler {
 
             }
             if(Logic.EINSTELLUNGS_COUNTER_R==1) {
-                Logic.player1=slots.get("SpielerName").getValue();
+                Logic.player1=slots.get("EigeneNamen").getValue();
             }else if(Logic.EINSTELLUNGS_COUNTER_R==2) {
-                Logic.player2=slots.get("SpielerName").getValue();
+                Logic.player2=slots.get("EigeneNamen").getValue();
             }else if(Logic.EINSTELLUNGS_COUNTER_R==3){
-                Logic.player3=slots.get("SpielerName").getValue();
+                Logic.player3=slots.get("EigeneNamen").getValue();
             }
             Logic.EINSTELLUNGS_COUNTER_R++;
             if(Logic.EINSTELLUNGS_COUNTER_R <= Logic.EINSTELLUNGS_COUNTER) {
@@ -102,13 +102,13 @@ public class MehrspielerHandler implements RequestHandler {
 
 
         } else if(Logic.EINSTELLUNGS_ID==5) {
-            if(slots.get("SpielerName").getValue().equalsIgnoreCase(Logic.player1)) {
+            if(slots.get("EigeneNamen").getValue().equalsIgnoreCase(Logic.player1)) {
                 Logic.currentPlayer=Logic.player1;
                 Logic.STATUS_ID=5;
-            }else if(slots.get("SpielerName").getValue().equalsIgnoreCase(Logic.player2)) {
+            }else if(slots.get("EigeneNamen").getValue().equalsIgnoreCase(Logic.player2)) {
                 Logic.currentPlayer=Logic.player2;
                 Logic.STATUS_ID=5;
-            }else if(slots.get("SpielerName").getValue().equalsIgnoreCase(Logic.player3)) {
+            }else if(slots.get("EigeneNamen").getValue().equalsIgnoreCase(Logic.player3)) {
                 Logic.currentPlayer=Logic.player3;
                 Logic.STATUS_ID=5;
             }else {

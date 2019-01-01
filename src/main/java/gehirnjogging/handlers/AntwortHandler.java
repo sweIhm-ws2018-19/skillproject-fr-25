@@ -23,7 +23,10 @@ public class AntwortHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
+
         return input.matches(intentName("AntwortIntent"));
+
+    	
     }
 
     @Override
@@ -57,12 +60,10 @@ public class AntwortHandler implements RequestHandler {
                             " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Super das Stimmt! Auf zur nächsten Frage. Einverstanden?")
                             .withReprompt("bist du eingeschlafen ?").build();
                 } else {
-
                     return input.getResponseBuilder().withSpeech(
                             " <audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_positive_response_02'/> Sehr gut! Auf zur nächsten Frage. Einverstanden?")
                             .withReprompt("bist du eingeschlafen ?").build();
                 }
-
             } else {
                 return input.getResponseBuilder().withSpeech(
                         "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
@@ -74,7 +75,7 @@ public class AntwortHandler implements RequestHandler {
             intentRequest = (IntentRequest) request;
             intent = intentRequest.getIntent();
             Logic.slots = intent.getSlots();
-
+            Logic.fragenWiederholung=0;
             Logic.setTrueAnser();
             Logic.checkAnswer();
             Logic.STATUS_ID=6;
@@ -103,10 +104,17 @@ public class AntwortHandler implements RequestHandler {
                 }
 
             } else {
-                return input.getResponseBuilder().withSpeech(
-                        "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
-                        .withReprompt("bist du eingeschlafen ?").build();
-            }
+            	
+            	if(Logic.EINSTELLUNGS_COUNTER_R!=1) {
+            		Logic.erasePoint();
+            		 return input.getResponseBuilder().withSpeech(
+                             "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Leider war die Antwort falsch, hierfür muss ich dir leider einen Punkt abziehen. Die richtige Antwort würde "+Logic.questions[Logic.FRAGE_NUMBER][2]+" lauten. Versuch es mit der nächsten Aufgabe gleich noch einmal. Bist du bereit")
+                             .withReprompt("bist du eingeschlafen ?").build();
+            	}
+            	  return input.getResponseBuilder().withSpeech(
+                          "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
+                          .withReprompt("bist du eingeschlafen ?").build();
+        }
         }
         /**
          *    Logic.STATUS_ID
@@ -147,7 +155,7 @@ public class AntwortHandler implements RequestHandler {
                     .build();
         }
         return input.getResponseBuilder()
-                .withSpeech("Du machst gerade pause um weiter zu spielen sagen fortsetzten")
+                .withSpeech("Spieler nicht gefunden bitte sage bevor du antwortest deinen Namen")
                 .withShouldEndSession(false)
                 .build();
     }

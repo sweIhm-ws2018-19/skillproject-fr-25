@@ -43,9 +43,10 @@ public class EndHandler implements RequestHandler {
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     	}
+    	Logic.STATUS_ID=7;
     	 return input.getResponseBuilder()
                  .withSpeech(Logic.scoreBewerten() + "Wollt ihr noch eine runde spielen ?")
-                 .withReprompt("bist du eingeschlafen ?")
+                 .withReprompt("Wollt ihr noch eine runde spielen ? Du kannst mit ja oder nein Antworten")
                  .build();
     }
 }

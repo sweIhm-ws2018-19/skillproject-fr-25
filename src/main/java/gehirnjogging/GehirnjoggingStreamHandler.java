@@ -42,7 +42,8 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
         return Skills.standard()
                 .addRequestHandlers(
                         new LaunchRequestHandler(),
-                        new QuizStartIntentHandler(),
+                        new QuizStartIntentHandler(), 
+                        new AntwortHandler(),
                         new ScoreHandler(),
                         new FrageWiederholenHandler(),
                         new CancelandStopIntentHandler(),
@@ -57,7 +58,6 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
                         new EndHandler(),
                         new PauseHandler(),
                         new EndHandler(),
-                        new AntwortHandler(),
                         new SpielablaufHelpHandler(),
                         new PunktvergabeHelpHandler(),
                         new SessionEndedRequestHandler())

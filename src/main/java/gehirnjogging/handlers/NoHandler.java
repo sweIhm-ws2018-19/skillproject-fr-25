@@ -25,7 +25,8 @@ public class NoHandler implements RequestHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.NoIntent"))&&Logic.STATUS_ID!=4;	}
+        return input.matches(intentName("AMAZON.NoIntent"));	
+    }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
@@ -50,7 +51,7 @@ public class NoHandler implements RequestHandler {
                 Logic.fragenWiederholung=0;
                 return input.getResponseBuilder()
                         .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                        .withReprompt("möchtet du, dass ich die Frage wiederhole?")
+                        .withReprompt("möchtet du, dass ich die Frage wiederhole?"+"  "+Logic.STATUS_ID+"     "+Logic.EINSTELLUNGS_COUNTER)
                         .build();
             }else if(Logic.STATUS_ID==2) {
                 return input.getResponseBuilder()
