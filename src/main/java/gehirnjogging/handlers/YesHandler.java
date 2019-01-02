@@ -45,7 +45,7 @@ public class YesHandler implements RequestHandler {
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
         }else if(Logic.STATUS_ID==2 || Logic.STATUS_ID==5) {
-            if(Logic.fragenWiederholung==3) {
+            if(Logic.fragenWiederholung==2) {
                 return input.getResponseBuilder()
                         .withSpeech("Tut mir leid, du hast dir bereits zwei mal die Frage wiederholen lassen. ein drittes mal sit gegen die regeln.")
                         .withReprompt("Bitte Antworte auf die Frage, wenn du es nicht weißst kannst du versuchen zu raten")
@@ -54,19 +54,19 @@ public class YesHandler implements RequestHandler {
             Logic.fragenWiederholung++;
             return input.getResponseBuilder()
                     .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                    .withReprompt("Möchtet du, dass ich die Frage wiederhole? ásdoa´soda")
+                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
                     .build();
         }else if(Logic.STATUS_ID==3) {
             if (Logic.EINSTELLUNGS_ID == 5) {
                 return input.getResponseBuilder()
                         .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                        .withReprompt("Möchtet du, dass ich die Frage wiederhole? ßsidßasid")
+                        .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
                         .build();
             }
-            Logic.EINSTELLUNGS_ID=2;
+         	Logic.STATUS_ID=1;
             return input.getResponseBuilder()
-                    .withSpeech("Wie viele Fragen sollen gespielt werden ? sagen sie zum beispiel ich möchte 5 Fragen spielen")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ?")
+                    .withReprompt("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? du kannst mit ja oder nein antworten")
                     .build();
         }else if(Logic.STATUS_ID==6) {
             if(Logic.EINSTELLUNGS_COUNTER_R==1) {

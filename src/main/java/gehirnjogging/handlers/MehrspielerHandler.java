@@ -42,26 +42,24 @@ public class MehrspielerHandler implements RequestHandler {
                     .build();
 
         }else if(Logic.EINSTELLUNGS_ID==1) {
-            if(slots.get("AlleineOdNicht").getValue().equalsIgnoreCase("Ich möchte alleine Spielen")) {
-                Logic.EINSTELLUNGS_ID=2;
+            if(slots.get("AlleineOdNicht").getValue().contains("ja")||slots.get("AlleineOdNicht").getValue().contains("ich möchte alleine spielen")) {
+            	Logic.STATUS_ID=1;
                 return input.getResponseBuilder()
-                        .withSpeech("Wie viele Fragen sollen gespielt werden ? Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
-                        .withReprompt("bist du eingeschlafen ?")
+                        .withSpeech("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ?")
+                        .withReprompt("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? du kannst mit ja oder nein antworten")
                         .build();
-            } else  if(slots.get("AlleineOdNicht").getValue().equalsIgnoreCase("Ich möchte nicht alleine spielen")) {
+            } else  if(slots.get("AlleineOdNicht").getValue().contains("nein")||slots.get("AlleineOdNicht").getValue().contains("ich möchte nicht alleine spielen")) {
                 Logic.EINSTELLUNGS_ID=3;
                 return input.getResponseBuilder()
                         .withSpeech("Wie viele Spieler seid ihr? Antworte mit 2 Spieler oder 3 Spieler")
                         .withReprompt("bist du eingeschlafen ?")
                         .build();
-            }  
-        }else if(Logic.EINSTELLUNGS_ID==2) {
-            Logic.fragenZahl=Integer.parseInt(slots.get("FragenAnzahlNumber").getValue());
-            Logic.STATUS_ID=1;
-            return input.getResponseBuilder()
-                    .withSpeech("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ?")
-                    .withReprompt("bist du eingeschlafen ?")
-                    .build();
+            }  else {
+                return input.getResponseBuilder()
+                        .withSpeech("Tut mir leid ich habe sie nicht verstanden, möchten sie alleine spielen ? sie können mit ja oder nein antworten")
+                        .withReprompt("bist du eingeschlafen ?")
+                        .build();
+            }
 
         }else if(Logic.EINSTELLUNGS_ID==3) {
 
@@ -90,16 +88,44 @@ public class MehrspielerHandler implements RequestHandler {
             Logic.EINSTELLUNGS_COUNTER_R++;
             if(Logic.EINSTELLUNGS_COUNTER_R <= Logic.EINSTELLUNGS_COUNTER) {
                 return input.getResponseBuilder()
-                        .withSpeech("Hallo Spieler " + Logic.EINSTELLUNGS_COUNTER_R +" um dich bei dem Quiz zu registrieren sage  Spieler " + Logic.EINSTELLUNGS_COUNTER_R + " und deinen Vornamen" )
+                        .withSpeech("Hallo Spieler " + Logic.EINSTELLUNGS_COUNTER_R +", um dich bei dem Quiz zu registrieren sage  Spieler " + Logic.EINSTELLUNGS_COUNTER_R + " und deinen Vornamen" )
                         .withReprompt("bist du eingeschlafen ?")
                         .build();
             }
-            Logic.EINSTELLUNGS_ID=2;
+            Logic.STATUS_ID=1;
             return input.getResponseBuilder()
-                    .withSpeech("Wie viele Fragen sollen gespielt werden ? Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ?")
+                    .withReprompt("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? du kannst mit ja oder nein antworten")
                     .build();
 
+        } else if(Logic.EINSTELLUNGS_ID==2) {
+            if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==1) {
+                return input.getResponseBuilder()
+                        .withSpeech("Ich habe dich nicht verstanden Möchtest du alleine Spielen ? du kannst mit Ja oder Nein Antworten")
+                        .withReprompt("Möchtest du alleine spielen?")
+                        .build();
+            }else if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==3) {
+                return input.getResponseBuilder()
+                        .withSpeech("Ich habe dich nicht verstanden. Wie viele Spieler seid ihr? Antworte mit 2 Spieler oder 3 Spieler ? ")
+                        .withReprompt("Antworte mit 2 Spieler oder 3 Spieler ?")
+                        .build();
+            }else if(Logic.STATUS_ID==4) {
+                return input.getResponseBuilder()
+                        .withSpeech("Du machst gerade pause um weiter zu spielen sagen fortsetzten")
+                        .withShouldEndSession(false)
+                        .build(); 
+            }else if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==2) {
+                return input.getResponseBuilder()
+                        .withSpeech("Ich habe dich nicht verstanden. Wie viele Fragen sollen gespielt werden ? Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
+                        .withReprompt("Sagen Sie zum Beispiel Ich möchte 5 Fragen spielen")
+                        .build();
+
+            }else if(Logic.STATUS_ID==1&&Logic.EINSTELLUNGS_ID==2) {
+                return input.getResponseBuilder()
+                        .withSpeech("Ich habe dich nicht verstanden. Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? Antworte mit Ja oder nein")
+                        .withReprompt("Antworte mit Ja oder nein")
+                        .build();
+            }
 
         } else if(Logic.EINSTELLUNGS_ID==5) {
             if(slots.get("EigeneNamen").getValue().equalsIgnoreCase(Logic.player1)) {
@@ -123,8 +149,8 @@ public class MehrspielerHandler implements RequestHandler {
                     .build();
         } 
         return input.getResponseBuilder()
-                .withSpeech("Fehler Hier hättest du nicht landen dürfen :)")
-                .withReprompt("bist du eingeschlafen ?")
+                .withSpeech("Ich habe dich leider nicht verstanden bitte wiederhole deine eingabe")
+                .withReprompt("Wenn du hilfe brauchst sage hilfe ?")
                 .build();
 
     }

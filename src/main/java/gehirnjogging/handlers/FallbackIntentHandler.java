@@ -17,7 +17,7 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"))&&Logic.STATUS_ID!=5;
+        return input.matches(intentName("AMAZON.FallbackIntent"));
     }
 
     @Override

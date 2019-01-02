@@ -25,7 +25,7 @@ public class Logic {
 	public static int FRAGE_NUMBER = 0; // Zufaellige Zahl welche vorgibt welche Frage Gestellt wird
 	public static int richtig = 0;
 	public static int counter = 0;
-	public static int size = 8;
+	public static int size = 6;
 	public static int fragenZahl = 0;
 	public static int random = size - 1;
 	public static int richtigAntwortZahl = 0;
@@ -43,35 +43,29 @@ public class Logic {
 	public static void initializeQuestions() {
 		questions[0][0] = "Ein Schäfer besitzt 148 Schafe. Er kauft 75 Schafe dazu. Außerdem bekommt er 10 Schafe geschenkt. Wie viele Schafe besitzt der Schäfer nun? ";
 		questions[0][1] = "233";
-		questions[0][2] = "";
+		questions[0][2] = "233 Schafe";
 
 		questions[1][0] = "Mit einer U-Bahn fahren von Montag bis Freitag jeweils 120 Kinder. Samstag fahren 80 und Sonntag 70 Kinder. Wie viele Kinder sind in der ganzen Woche mit der U-Bahn gefahren?";
 		questions[1][1] = "750";
-		questions[1][2] = "";
+		questions[1][2] = "750 Kinder";
 
 		questions[2][0] = "Vor einer roten Ampel stehen mehrere Autos hintereinander. Eines steht vor zwei Autos, eines steht hinter zweien, und eines fährt zwischen zwei Wagen. Wie viele Fahrzeuge sind auf der Straße?";
 		questions[2][1] = "3";
-		questions[2][2] = "";
+		questions[2][2] = "3 Fahrzeuge";
 
 		questions[3][0] = "Eine Uhr mit Ziffernblatt hat mindestens zwei Zeiger – der kleine ist der Stundenzeiger, der große der Minutenzeiger. Der große Zeiger bewegt sich natürlich schneller als der kleine, und wir gehen davon aus, dass die Uhr richtig geht. Wie oft wird der kleine Zeiger zwischen 12 Uhr mittags und 12 Uhr nachts vom großen Zeiger überholt?";
 		questions[3][1] = "10";
-		questions[3][2] = "";
+		questions[3][2] = "10 mal";
 
 		questions[4][0] = "Welcher Monat ist der Kürzeste?";
-		questions[4][1] = "Mai";
-		questions[4][2] = "";
+		questions[4][1] = "mai";
+		questions[4][2] = "Mai da er nur aus drei buchstaben besteht";
 
 		questions[5][0] = "In welchem Jahr begann der 1. Weltkrieg? ";
 		questions[5][1] = "1914";
-		questions[5][2] = "";
+		questions[5][2] = "Im Jahre 1914";
 
-		questions[6][0] = "Welches Gewicht sollte man nicht verlieren?";
-		questions[6][1] = "Gleichgewicht";
-		questions[6][2] = "";
 
-		questions[7][0] = "Wer kann uns ungestraft ins Gesicht treten?";
-		questions[7][1] = "Schweiß";
-		questions[7][2] = "";
 
 	}
 

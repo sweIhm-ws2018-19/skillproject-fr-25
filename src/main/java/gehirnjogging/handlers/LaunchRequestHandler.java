@@ -46,7 +46,7 @@ public class LaunchRequestHandler implements RequestHandler {
             Logic.initializeQuestions();
             Logic.STATUS_ID = 0;
             Logic.inizialPoints();
-            return input.getResponseBuilder().withSpeech(welcome).withReprompt("bist du eingeschlafen ?").build();
+            return input.getResponseBuilder().withSpeech(welcome).withReprompt("bist du bist du bereit ?").build();
         } else {
 
             //***********STRINGS***********

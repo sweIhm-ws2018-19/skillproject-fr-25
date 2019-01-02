@@ -12,6 +12,7 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 
 import gehirnjogging.Logic;
+import gehirnjogging.SpeechStrings;
 
 public class AntwortHandler implements RequestHandler {
 
@@ -65,9 +66,9 @@ public class AntwortHandler implements RequestHandler {
                             .withReprompt("bist du eingeschlafen ?").build();
                 }
             } else {
-                return input.getResponseBuilder().withSpeech(
-                        "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
-                        .withReprompt("bist du eingeschlafen ?").build();
+            	  return input.getResponseBuilder().withSpeech(
+            			  "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Leider war die Antwort falsch. Die richtige Antwort würde "+Logic.questions[Logic.FRAGE_NUMBER][2]+" lauten. Versuch es mit der nächsten Aufgabe gleich noch einmal. Bist du bereit")
+                          .withReprompt("bist du eingeschlafen ?").build();
             }
         } else if(Logic.EINSTELLUNGS_COUNTER_R != 1&&(Logic.STATUS_ID==2||Logic.STATUS_ID==5)) {
             //Mehrspieler
@@ -104,17 +105,11 @@ public class AntwortHandler implements RequestHandler {
                 }
 
             } else {
-            	
-            	if(Logic.EINSTELLUNGS_COUNTER_R!=1) {
             		Logic.erasePoint();
             		 return input.getResponseBuilder().withSpeech(
                              "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Leider war die Antwort falsch, hierfür muss ich dir leider einen Punkt abziehen. Die richtige Antwort würde "+Logic.questions[Logic.FRAGE_NUMBER][2]+" lauten. Versuch es mit der nächsten Aufgabe gleich noch einmal. Bist du bereit")
                              .withReprompt("bist du eingeschlafen ?").build();
             	}
-            	  return input.getResponseBuilder().withSpeech(
-                          "<audio src='soundbank://soundlibrary/ui/gameshow/amzn_ui_sfx_gameshow_negative_response_02'/> Wenn du es mit der nächsten Frage gleich noch einmal versuchen möchtest sage  <break time=\"1s\"/> nächste aufgabe")
-                          .withReprompt("bist du eingeschlafen ?").build();
-        }
         }
         /**
          *    Logic.STATUS_ID
@@ -127,7 +122,12 @@ public class AntwortHandler implements RequestHandler {
          * 6| Frage beantwortet
          * 7| Spielende
          */
-        if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==1) {
+        if(Logic.STATUS_ID==0) {
+            return input.getResponseBuilder()
+                    .withSpeech(SpeechStrings.WELCOME+", du kannst mit Ja oder Nein Antworten")
+                    .withReprompt("Möchtest du alleine spielen?")
+                    .build();
+        }else   if(Logic.STATUS_ID==3&&Logic.EINSTELLUNGS_ID==1) {
             return input.getResponseBuilder()
                     .withSpeech("Ich habe dich nicht verstanden Möchtest du alleine Spielen ? du kannst mit Ja oder Nein Antworten")
                     .withReprompt("Möchtest du alleine spielen?")
