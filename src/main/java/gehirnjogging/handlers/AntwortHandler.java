@@ -32,7 +32,8 @@ public class AntwortHandler implements RequestHandler {
         //Einzelspieler
 
 
-        if((Logic.STATUS_ID == 2 || Logic.STATUS_ID == 5)){request = input.getRequestEnvelope().getRequest();
+        if((Logic.STATUS_ID == 2 || Logic.STATUS_ID == 5)){
+            request = input.getRequestEnvelope().getRequest();
             intentRequest = (IntentRequest) request;
             intent = intentRequest.getIntent();
             Logic.slots = intent.getSlots();
