@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 
 import static org.junit.Assert.assertTrue;
 
+
 import org.junit.Test;
 import org.mockito.Mockito;
 import static org.mockito.Matchers.any;
@@ -11,7 +12,7 @@ import static org.mockito.Mockito.when;
 
 
 public class QuizStartIntentTest{
-	QuizStartIntent handler = new QuizStartIntent();
+    QuizStartIntentHandler handler = new QuizStartIntentHandler();
 
     @Test
     public void testCanHandle(){

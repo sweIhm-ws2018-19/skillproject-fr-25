@@ -15,7 +15,7 @@ public class FrageWiederholenHandler  implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("FrageWiederholenIntent"))&&Logic.STATUS_ID==5&&Logic.STATUS_ID!=4;
+        return input.matches(intentName("FrageWiederholenIntent"))&&Logic.STATUS_ID==5;
     }
 
     @Override
