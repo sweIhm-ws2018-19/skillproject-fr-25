@@ -4,8 +4,15 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 
 import static org.junit.Assert.assertTrue;
 
+import com.amazon.ask.model.Response;
+import gehirnjogging.TestUtil;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
@@ -23,6 +30,13 @@ public class RegelHandlerTest{
     
     @Test
     public void testHandle() {
+        Map<String, Object> sessAtt = new HashMap<String, Object>();
+        sessAtt.put("test","tests");
+        final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
+
+        Optional<Response> res = handler.handle(mockInput);
+        Response response = res.get();
+        assertTrue(response.getOutputSpeech().toString().contains("t du etwas über den Spielablauf oder die Punktver"));
     }
 
 }
