@@ -7,6 +7,9 @@
 	<version>1.0</version>
 	<name>Gehirnjogging</name>
 	<url>http://developer.amazon.com/ask</url>
+	<properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 	<licenses>
 		<license>
 			<name>The Apache License, Version 2.0</name>
