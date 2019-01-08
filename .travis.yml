@@ -13,3 +13,7 @@ addons:
 script:
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
   - mvn org.apache.maven.plugins:maven-assembly-plugin:2.6:assembly -DdescriptorId=jar-with-dependencies package
+  
+env:
+  matrix: 
+   -LANG=en_US.ISO-8859-1
