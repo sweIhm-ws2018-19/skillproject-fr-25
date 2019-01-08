@@ -1,7 +1,3 @@
-Das ist ein Test
-
-
-
 Hier ein paar UML Diagramme: 
 
 #### Regeln:
