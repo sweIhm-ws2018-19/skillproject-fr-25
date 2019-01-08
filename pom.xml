@@ -8,7 +8,7 @@
 	<name>Gehirnjogging</name>
 	<url>http://developer.amazon.com/ask</url>
 	<properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
   </properties>
 	<licenses>
 		<license>
