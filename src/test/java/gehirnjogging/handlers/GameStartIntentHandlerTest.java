@@ -41,7 +41,7 @@ public class GameStartIntentHandlerTest {
         haus.EINSTELLUNGS_ID = 1;
         Optional<Response> res = handler.handle(mockInput);
         Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen oder hast du Freunde dabei?"));
+        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen?"));
 
 
 
