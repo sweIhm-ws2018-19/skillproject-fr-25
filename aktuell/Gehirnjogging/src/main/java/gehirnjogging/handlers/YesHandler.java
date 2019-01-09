@@ -26,7 +26,7 @@ public class YesHandler implements RequestHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.YesIntent"))&&Logic.STATUS_ID!=0;	}
+        return input.matches(intentName("AMAZON.YesIntent"));	}
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
@@ -35,8 +35,8 @@ public class YesHandler implements RequestHandler {
             Logic.EINSTELLUNGS_ID=1;
             Logic.STATUS_ID=3;
             return input.getResponseBuilder()
-                    .withSpeech("Möchtest du alleine spielen?")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Möchtest du alleine spielen oder hast du Freunde dabei?")
+                    .withReprompt("Möchtest du alleine spielen. du kannst mit ja oder nein antworten")
                     .build();
 
         }else if(Logic.STATUS_ID==1) {
@@ -44,23 +44,50 @@ public class YesHandler implements RequestHandler {
                     .withSpeech("Möchtest du etwas über den Spielablauf oder die Punktvergabe wissen?")
                     .withReprompt("bist du eingeschlafen ?")
                     .build();
-        }else if(Logic.STATUS_ID==2) {
+        }else if(Logic.STATUS_ID==2 || Logic.STATUS_ID==5) {
+            if(Logic.fragenWiederholung==2) {
+                return input.getResponseBuilder()
+                        .withSpeech("Tut mir leid, du hast dir bereits zwei mal die Frage wiederholen lassen. ein drittes mal sit gegen die regeln.")
+                        .withReprompt("Bitte Antworte auf die Frage, wenn du es nicht weißst kannst du versuchen zu raten")
+                        .build();
+            }
+            Logic.fragenWiederholung++;
             return input.getResponseBuilder()
-                    .withSpeech("Hier kommt nocheinmal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
                     .build();
         }else if(Logic.STATUS_ID==3) {
-            Logic.EINSTELLUNGS_ID=2;
+            if (Logic.EINSTELLUNGS_ID == 5) {
+                return input.getResponseBuilder()
+                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
+                        .build();
+            }
+         	Logic.STATUS_ID=1;
             return input.getResponseBuilder()
-                    .withSpeech("Wie viele Fragen sollen gespielt werden ? sagen sie zb. ich möchte 5 Fragen spielen")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ?")
+                    .withReprompt("Ok super! Möchtest du vor dem Spielbeginn noch die Spielregeln hören ? du kannst mit ja oder nein antworten")
                     .build();
-        }else if(Logic.STATUS_ID==4) {
-
-        }else if(Logic.STATUS_ID==5) {
-
         }else if(Logic.STATUS_ID==6) {
-
+            if(Logic.EINSTELLUNGS_COUNTER_R==1) {
+                Logic.STATUS_ID=5;
+            }else {
+                Logic.STATUS_ID=3;
+                Logic.EINSTELLUNGS_ID=5;
+            }
+            if (Logic.random >= 0) {
+                Logic.getRandom();
+                Logic.counter += 1;
+                return input.getResponseBuilder()
+                        .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withReprompt("Möchtet du, dass ich die Frage wiederhole? 121233213")
+                        .build();
+            } else {
+                return input.getResponseBuilder()
+                        .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_clear_throat_ahem_01'/>" +" Leider gibt es keine Fragen mehr. Der Spieler hat " +  Logic.richtig + " von " + Logic.counter + " Fragen richtig beantwortet. <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Schön, dass du da warst! Ich hoffe wir sehen uns bald wieder zu einem spannenden Spiel! Machs gut!")
+                        .withShouldEndSession(true)
+                        .build();
+            }
         }else if(Logic.STATUS_ID==7) {
             String welcome = Logic.pickPhrase(SpeechStrings.WELCOME);
             Logic.newGame();
@@ -74,7 +101,7 @@ public class YesHandler implements RequestHandler {
                     .build(); 
         }
         return input.getResponseBuilder()
-                .withSpeech("Tut mir leide, diesen Input kann ich leider nicht verarbeiten")
+                .withSpeech("Tut mir leid, diesen Input kann ich leider nicht verarbeiten" + Logic.STATUS_ID)
                 .withReprompt("bist du eingeschlafen ?")
                 .build();
     }

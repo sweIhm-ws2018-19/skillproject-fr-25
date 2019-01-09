@@ -104,13 +104,13 @@ public class LaunchRequestHandler implements RequestHandler {
                         .build();
             case 2:
                 return input.getResponseBuilder()
-                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ":" + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withShouldEndSession(false)
                         .build();
             case 3:
                 if (Logic.EINSTELLUNGS_ID == 1) {
                     return input.getResponseBuilder()
-                            .withSpeech("Möchtest du alleine spielen?")
+                            .withSpeech("Möchtest du alleine spielen? oder hast du Freunde dabei")
                             .withShouldEndSession(false)
                             .build();
                 } else if (Logic.EINSTELLUNGS_ID == 2) {
@@ -119,11 +119,10 @@ public class LaunchRequestHandler implements RequestHandler {
                             .withShouldEndSession(false)
                             .build();
                 } else if (Logic.EINSTELLUNGS_ID == 5) {
-                    return input.getResponseBuilder()
-                            .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
-                            .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
-                            .withShouldEndSession(false)
-                            .build();
+                	  return input.getResponseBuilder()
+                              .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                              .withShouldEndSession(false)
+                              .build();
                 } else {
                     return input.getResponseBuilder()
                             .withSpeech("Wie viele Spieler seid ihr? Antworte mit 2 Spieler oder 3 Spieler")
@@ -132,12 +131,12 @@ public class LaunchRequestHandler implements RequestHandler {
                 }
             case 5:
                 return input.getResponseBuilder()
-                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ":" + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withShouldEndSession(false)
                         .build();
             default:
                 return input.getResponseBuilder()
-                        .withSpeech("Error")
+                        .withSpeech("Tut mir leid ich habe dich ledier nicht verstanden.")
                         .build();
             }
         }

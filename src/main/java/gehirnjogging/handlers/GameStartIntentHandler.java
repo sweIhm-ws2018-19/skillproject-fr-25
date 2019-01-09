@@ -22,8 +22,8 @@ public class GameStartIntentHandler implements RequestHandler {
    	 Logic.EINSTELLUNGS_ID=1;
      Logic.STATUS_ID=3;
      return input.getResponseBuilder()
-               .withSpeech("Möchtest du alleine spielen?")
-               .withReprompt("bist du eingeschlafen ?")
+               .withSpeech("Möchtest du alleine spielen oder hast du Freunde dabei?")
+               .withReprompt("Du kannst mit ja oder nein antworten")
                .build();
     }
 }

@@ -21,17 +21,15 @@ public class EndHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-           AttributesManager attributesManager = input.getAttributesManager();
-           Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
-
-           persistentAttributes.clear();
-           attributesManager.setPersistentAttributes(persistentAttributes);
-           attributesManager.savePersistentAttributes();
-           
+        AttributesManager attributesManager = input.getAttributesManager();
+        Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+        persistentAttributes.clear();
+        attributesManager.setPersistentAttributes(persistentAttributes);
+        attributesManager.savePersistentAttributes();
     	if(Logic.counter==0) {
     		return input.getResponseBuilder()
-                    .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_baby_cry_01'/>" +"Schade, dass du doch nicht spielen möchtest, ich hoffe, dass du bald wiederkommst")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_baby_cry_01'/> Schade, dass du gehen willst. Ich hoffe wir hören uns bald wieder")
+                    .withReprompt("bye")
                     .withShouldEndSession(true)
                     .build();
     	}
@@ -39,8 +37,8 @@ public class EndHandler implements RequestHandler {
     	if(Logic.EINSTELLUNGS_COUNTER_R==1) {
     		Logic.STATUS_ID=7;
         return input.getResponseBuilder()
-                .withSpeech("Du hast bei  "+  Logic.counter + " Fragen " + Logic.richtig + " Punkte erreicht <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Möchtest du noch eine runde spielen ?")
-                .withReprompt("bist du eingeschlafen ?")
+                .withSpeech("Du hast bei  " +  Logic.counter + " Fragen " + Logic.richtig + " Punkte erreicht <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Möchtest du noch eine runde spielen ?")
+                .withReprompt("du kannst mit ja oder nein antworten")
                 .build();
     	}
     	Logic.STATUS_ID=7;

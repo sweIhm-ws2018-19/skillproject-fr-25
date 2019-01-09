@@ -13,7 +13,7 @@ public class QuizStartIntentHandler implements RequestHandler {
 
 	@Override
 	public boolean canHandle(HandlerInput input) {
-		return input.matches(intentName("StartGameIntent"))&&Logic.STATUS_ID!=0&&Logic.STATUS_ID!=3&&Logic.STATUS_ID!=2;
+		return input.matches(intentName("StartGameIntent"))&&Logic.STATUS_ID!=0&&Logic.STATUS_ID!=3&&Logic.STATUS_ID!=2&&Logic.STATUS_ID!=4;
 	}
 
 	@Override
@@ -29,14 +29,22 @@ public class QuizStartIntentHandler implements RequestHandler {
 	        Logic.getRandom();
 	        Logic.counter += 1;
 	         return input.getResponseBuilder()
-	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
 	                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
 	                    .build();
 	    } else {
+	    	if(Logic.EINSTELLUNGS_COUNTER_R==1) {
+	    		Logic.STATUS_ID=7;
 	        return input.getResponseBuilder()
-	                .withSpeech("<audio src='soundbank://soundlibrary/human/amzn_sfx_clear_throat_ahem_01'/>" +" Leider gibt es keine Fragen mehr. Der Spieler hat " +  Logic.richtig + " von " + Logic.counter + " Fragen richtig beantwortet. <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Schön, dass du da warst! Ich hoffe wir sehen uns bald wieder zu einem spannenden Spiel! Machs gut!")
-	                .withShouldEndSession(true)
+	                .withSpeech("Leider gibt es keine Fragen mehr. Du hast bei  "+  Logic.counter + " Fragen " + Logic.richtig + " Punkte erreicht <audio src='soundbank://soundlibrary/human/amzn_sfx_crowd_applause_03'/>" + "Möchtest du noch eine runde spielen ?")
+	                .withReprompt("bist du eingeschlafen ?")
 	                .build();
+	    	}
+	    	Logic.STATUS_ID=7;
+	    	 return input.getResponseBuilder()
+	                 .withSpeech("Leider gibt es keine Fragen mehr"+Logic.scoreBewerten() + "Wollt ihr noch eine runde spielen ?")
+	                 .withReprompt("Wollt ihr noch eine runde spielen ? Du kannst mit ja oder nein Antworten")
+	                 .build();
 	    }
 	}
 }

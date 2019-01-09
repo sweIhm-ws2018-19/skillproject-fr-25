@@ -16,6 +16,7 @@ public class Logic {
 	public static String currentPlayer = "";
 	public static String pause = "1";
 	public static String RICHTIGE_ANTWORT = ""; // Richtige Antwort zb. "Antwort A","Antwort D","Antwort C"
+	public static String letzteAntwort = "";
 
 	public static int STATUS_ID = 0;
 	public static int EINSTELLUNGS_ID = 0;
@@ -25,11 +26,11 @@ public class Logic {
 	public static int FRAGE_NUMBER = 0; // Zufaellige Zahl welche vorgibt welche Frage Gestellt wird
 	public static int richtig = 0;
 	public static int counter = 0;
-	public static int size = 6;
+	public static int size = 5;
 	public static int fragenZahl = 0;
 	public static int random = size - 1;
 	public static int richtigAntwortZahl = 0;
-
+	
 	public static boolean antwortRichtig = true;
 
 	public static ArrayList<Integer> numbers;
@@ -41,31 +42,25 @@ public class Logic {
 	 * DatumJahr Antwort Nummber Sprache
 	 */
 	public static void initializeQuestions() {
-		questions[0][0] = "Ein SchÃ¤fer besitzt 148 Schafe. Er kauft 75 Schafe dazu. AuÃŸerdem bekommt er 10 Schafe geschenkt. Wie viele Schafe besitzt der SchÃ¤fer nun? ";
+		questions[0][0] = "Ein Schäfer besitzt 148 Schafe. Er kauft 75 Schafe dazu. Außerdem bekommt er 10 Schafe geschenkt. Wie viele Schafe besitzt der Schäfer nun? ";
 		questions[0][1] = "233";
 		questions[0][2] = "233 Schafe";
 
-		questions[1][0] = "Mit einer U-Bahn fahren von Montag bis Freitag jeweils 120 Kinder. Samstag fahren 80 und Sonntag 70 Kinder. Wie viele Kinder sind in der ganzen Woche mit der U-Bahn gefahren?";
+		questions[1][0] = "Mit einer U-Bahn fahren von Montag bis Freitag jeweils 120 Kinder. Samstags fahren 80 und Sonntags 70 Kinder. Wie viele Kinder sind in der ganzen Woche mit der U-Bahn gefahren?";
 		questions[1][1] = "750";
 		questions[1][2] = "750 Kinder";
 
-		questions[2][0] = "Vor einer roten Ampel stehen mehrere Autos hintereinander. Eines steht vor zwei Autos, eines steht hinter zweien, und eines fÃ¤hrt zwischen zwei Wagen. Wie viele Fahrzeuge sind auf der StraÃŸe?";
+		questions[2][0] = "Vor einer roten Ampel stehen mehrere Autos hintereinander. Eines steht vor zwei Autos, eines steht hinter zweien, und eines fährt zwischen zwei Wagen. Wie viele Fahrzeuge sind auf der Straße?";
 		questions[2][1] = "3";
 		questions[2][2] = "3 Fahrzeuge";
 
-		questions[3][0] = "Eine Uhr mit Ziffernblatt hat mindestens zwei Zeiger â€“ der kleine ist der Stundenzeiger, der groÃŸe der Minutenzeiger. Der groÃŸe Zeiger bewegt sich natÃ¼rlich schneller als der kleine, und wir gehen davon aus, dass die Uhr richtig geht. Wie oft wird der kleine Zeiger zwischen 12 Uhr mittags und 12 Uhr nachts vom groÃŸen Zeiger Ã¼berholt?";
+		questions[3][0] = "Eine Uhr mit Ziffernblatt hat mindestens zwei Zeiger, der Kleine ist der Stundenzeiger, der große der Minutenzeiger. Der großŸe Zeiger bewegt sich natürlich schneller als der kleine, und wir gehen davon aus, dass die Uhr richtig geht. Wie oft wird der kleine Zeiger zwischen 12 Uhr mittags und 12 Uhr nachts vom großen Zeiger überholt?";
 		questions[3][1] = "10";
 		questions[3][2] = "10 mal";
 
-		questions[4][0] = "Welcher Monat ist der KÃ¼rzeste?";
+		questions[4][0] = "Welcher Monat ist der Kürzeste?";
 		questions[4][1] = "mai";
-		questions[4][2] = "Mai da er nur aus drei buchstaben besteht";
-
-		questions[5][0] = "In welchem Jahr begann der 1. Weltkrieg? ";
-		questions[5][1] = "1914";
-		questions[5][2] = "Im Jahre 1914";
-
-
+		questions[4][2] = "Mai ist der kürzeste Monat, da er nur aus drei buchstaben besteht";
 
 	}
 
@@ -103,8 +98,8 @@ public class Logic {
 
 	// zahl zwischen 1und4->1,2,3,4
 	public static void zufallszahl() {
-		Random random = new Random();
-		richtigAntwortZahl = random.nextInt(4 - 1 + 1) + 1;
+		Random rand = new Random();
+		richtigAntwortZahl = rand.nextInt(4 - 1 + 1) + 1;
 	}
 
 	public static void inizialPoints() {
@@ -208,31 +203,37 @@ public class Logic {
 
 	// NEU***********************
 	public static String scoreBewerten() {
-		if (EINSTELLUNGS_COUNTER_R == 2) {
-			if (points[0] > points[1]) {
-				return "Platz 2 geht an " + player2 + "mit " + points[1] + " Punkten und Platz eins geht an " + player1
-						+ "mit " + points[0] + " Punkten";
-			} else if (points[0] < points[1]) {
-				return "Platz 2 geht an " + player1 + "mit " + points[0] + " Punkten und Platz eins geht an " + player2
-						+ "mit " + points[1] + " Punkten";
-			} else {
-				return "Unentschieden " + player1 + "  " + player2 + " habn jeweils " + points[0] + " erziehlt";
-			}
-		}
 		if (points[0] > points[1] && points[0] > points[2]) {
+			if(points[0]==1) {
+				return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player1
+						+ " dieser erreichte einen" + " Punkt";
+			}
 			return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player1
 					+ " dieser erreichte" + points[0] + " Punkte";
 		}
+		
 		if (points[1] > points[0] && points[1] > points[2]) {
+			if(points[1]==1) {
+				return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player2
+						+ " dieser erreichte einen" + " Punkt";
+			}
 			return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player2
 					+ " dieser erreichte" + points[1] + " Punkte";
 		}
 		if (points[2] > points[0] && points[2] > points[1]) {
+			if(points[2]==1) {
+				return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player3
+						+ " dieser erreichte einen" + " Punkt";
+			}
 			return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Der Sieger ist " + player3
 					+ " dieser erreichte" + points[2] + " Punkte";
-		}
-		return "Unentschieden " + player1 + "  " + player2 + player3 + " habn jeweils " + points[0] + " erziehlt";
-
+		}else if(points[0]==1&&points[1]==1&&points[2]==1) {
+			return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Unentschieden alle Spieler haben haben jeweils einen Punkt erziehlt";
+	 
+	 }	
+		
+		return "<audio src='soundbank://soundlibrary/musical/amzn_sfx_trumpet_bugle_03'/> Unentschieden alle Spieler haben haben jeweils" + points[0] + " erziehlt";
 	}
+	
 
 }

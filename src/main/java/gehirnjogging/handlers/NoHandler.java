@@ -2,8 +2,10 @@ package gehirnjogging.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.util.Map;
 import java.util.Optional;
 
+import com.amazon.ask.attributes.AttributesManager;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
@@ -32,6 +34,11 @@ public class NoHandler implements RequestHandler {
     public Optional<Response> handle(HandlerInput input) {
         if(Logic.STATUS_ID==0) {
             Logic.STATUS_ID=1;
+            AttributesManager attributesManager = input.getAttributesManager();
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            persistentAttributes.clear();
+            attributesManager.setPersistentAttributes(persistentAttributes);
+            attributesManager.savePersistentAttributes();
             return input.getResponseBuilder()
                     .withSpeech("Schade, dass du doch nicht spielen möchtest, ich hoffe, dass du bald wiederkommst")
                     .withReprompt("bist du eingeschlafen ?")
@@ -40,9 +47,11 @@ public class NoHandler implements RequestHandler {
         } else if (Logic.STATUS_ID==1) {
             if(Logic.EINSTELLUNGS_COUNTER_R==1) {
                 Logic.STATUS_ID=5;
+                Logic.EINSTELLUNGS_ID=5;
             }else {
                 Logic.STATUS_ID=3;
-                Logic.EINSTELLUNGS_ID=5;
+                Logic.EINSTELLUNGS_ID=5;// TEST!
+                
             }
 
             if (Logic.random >= 0) {
@@ -50,7 +59,7 @@ public class NoHandler implements RequestHandler {
                 Logic.counter += 1;
                 Logic.fragenWiederholung=0;
                 return input.getResponseBuilder()
-                        .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withReprompt("möchtet du, dass ich die Frage wiederhole?"+"  "+Logic.STATUS_ID+"     "+Logic.EINSTELLUNGS_COUNTER)
                         .build();
             }else if(Logic.STATUS_ID==2) {
@@ -62,8 +71,8 @@ public class NoHandler implements RequestHandler {
         }else if(Logic.STATUS_ID==3) {
             Logic.EINSTELLUNGS_ID=3;
             return input.getResponseBuilder()
-                    .withSpeech("Wie viele Spieler seit ihr ? Antworte mit 2 Spieler oder 3 Spieler")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Wie viele Spieler seid ihr?")
+                    .withReprompt("Antworte mit 2 spieler oder drei spieler")
                     .build();
 
         }else if(Logic.STATUS_ID==4) {
@@ -83,6 +92,11 @@ public class NoHandler implements RequestHandler {
                     .build();
 
         }else if(Logic.STATUS_ID==7) {
+            AttributesManager attributesManager = input.getAttributesManager();
+            Map<String, Object> persistentAttributes = attributesManager.getPersistentAttributes();
+            persistentAttributes.clear();
+            attributesManager.setPersistentAttributes(persistentAttributes);
+            attributesManager.savePersistentAttributes();
             return input.getResponseBuilder()
                     .withSpeech("Schön das du da warst Ich hoffe wir sehen uns bald wieder")
                     .withReprompt("bist du eingeschlafen ?")

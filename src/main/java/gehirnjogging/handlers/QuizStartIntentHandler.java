@@ -29,7 +29,7 @@ public class QuizStartIntentHandler implements RequestHandler {
 	        Logic.getRandom();
 	        Logic.counter += 1;
 	         return input.getResponseBuilder()
-	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+	                    .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
 	                    .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
 	                    .build();
 	    } else {

@@ -5,7 +5,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
 import gehirnjogging.Logic;
-import gehirnjogging.SpeechStrings;
 
 import java.util.Optional;
 
@@ -18,7 +17,7 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.FallbackIntent"))&&Logic.STATUS_ID!=5;
+        return input.matches(intentName("AMAZON.FallbackIntent"));
     }
 
     @Override
@@ -47,8 +46,8 @@ public class FallbackIntentHandler implements RequestHandler {
 	               .build();
 	}
 	     return input.getResponseBuilder()
-	               .withSpeech("Tut mir Leid ich habe sie nicht verstanden Infos: Status ID "+Logic.STATUS_ID+" Einstelugns ID "+Logic.EINSTELLUNGS_ID)
-	               .withReprompt("bist du eingeschlafen ?")
+	               .withSpeech("Tut mir Leid, ich habe sie leider nicht verstanden")
+	               .withReprompt("bitte antworten sie nocheinmal")
 	               .build();
 	}
     

@@ -14,15 +14,14 @@
 package gehirnjogging;
 
 import com.amazon.ask.Skill;
+
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import gehirnjogging.handlers.CancelandStopIntentHandler;
 import gehirnjogging.handlers.EndHandler;
 import gehirnjogging.handlers.FallbackIntentHandler;
-import gehirnjogging.handlers.FortsetzenHandler;
 import gehirnjogging.handlers.FrageWiederholenHandler;
 import gehirnjogging.handlers.GameStartIntentHandler;
-import gehirnjogging.handlers.HelpIntentHandler;
 import gehirnjogging.handlers.LaunchRequestHandler;
 import gehirnjogging.handlers.MehrspielerHandler;
 import gehirnjogging.handlers.NoHandler;
@@ -43,11 +42,11 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
         return Skills.standard()
                 .addRequestHandlers(
                         new LaunchRequestHandler(),
-                        new QuizStartIntentHandler(),
+                        new QuizStartIntentHandler(), 
+                        new AntwortHandler(),
                         new ScoreHandler(),
                         new FrageWiederholenHandler(),
                         new CancelandStopIntentHandler(),
-                        new HelpIntentHandler(),
                         new FallbackIntentHandler(),
                         new GameStartIntentHandler(),
                         new RegelHandler(),
@@ -57,12 +56,12 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
                         new NoHandler(),
                         new EndHandler(),
                         new PauseHandler(),
-                        new FortsetzenHandler(),
                         new EndHandler(),
-                        new AntwortHandler(),
                         new SpielablaufHelpHandler(),
                         new PunktvergabeHelpHandler(),
                         new SessionEndedRequestHandler())
+                .withTableName("GehirnjoggingData")
+                .withAutoCreateTable(true)
                 .withSkillId("amzn1.ask.skill.58b4fb46-62fe-4d55-a144-5de47094bc94")
                 .build();
     }

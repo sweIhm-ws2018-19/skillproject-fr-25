@@ -20,9 +20,8 @@ public class PunktvergabeHelpHandler  implements RequestHandler {
 
 	@Override
 	public Optional<Response> handle(HandlerInput input) {
-		 Logic.getRandom();
 		 return input.getResponseBuilder()
-		            .withSpeech("Die Punktvergabe ist ganz einfach, für jede richtige Antwort gibt es einen Punkt. Bei mehreren Spielern darf derjenige zu erst Antworten der als erstes seinen Namen gesagt hat. Bei einer richtigen Antwort erhält derjenige einen Punkt, bei einer falschen Antwort wird die Frage an den nächsten Spieler weitergegeben oder wahlweiße zur nächsten Frage übergegangen. Hast du sonst noch Fragen?" )
+		            .withSpeech("Die Punktvergabe ist ganz einfach, für jede richtige Antwort gibt es einen Punkt. Bei mehreren Spielern darf derjenige zu erst Antworten der als erstes seinen Namen gesagt hat. Bei einer richtigen Antwort erhält derjenige einen Punkt, bei einer falschen Antwort verliert er einen Punkt. Hast du sonst noch Fragen?" )
 		            .withReprompt("bist du eingeschlafen ?")
 		            .build();
 	}

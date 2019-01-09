@@ -26,7 +26,7 @@ public class YesHandler implements RequestHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.YesIntent"))&&Logic.STATUS_ID!=0&&Logic.STATUS_ID!=4;	}
+        return input.matches(intentName("AMAZON.YesIntent"));	}
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
@@ -35,8 +35,8 @@ public class YesHandler implements RequestHandler {
             Logic.EINSTELLUNGS_ID=1;
             Logic.STATUS_ID=3;
             return input.getResponseBuilder()
-                    .withSpeech("Möchtest du alleine spielen?")
-                    .withReprompt("bist du eingeschlafen ?")
+                    .withSpeech("Möchtest du alleine spielen oder hast du Freunde dabei?")
+                    .withReprompt("Möchtest du alleine spielen. du kannst mit ja oder nein antworten")
                     .build();
 
         }else if(Logic.STATUS_ID==1) {
@@ -53,13 +53,13 @@ public class YesHandler implements RequestHandler {
             }
             Logic.fragenWiederholung++;
             return input.getResponseBuilder()
-                    .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                    .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                     .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
                     .build();
         }else if(Logic.STATUS_ID==3) {
             if (Logic.EINSTELLUNGS_ID == 5) {
                 return input.getResponseBuilder()
-                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withSpeech("Hier kommt noch ein mal die Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withReprompt("Möchtet du, dass ich die Frage wiederhole?")
                         .build();
             }
@@ -79,7 +79,7 @@ public class YesHandler implements RequestHandler {
                 Logic.getRandom();
                 Logic.counter += 1;
                 return input.getResponseBuilder()
-                        .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + ": " + Logic.questions[Logic.FRAGE_NUMBER][0])
+                        .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withReprompt("Möchtet du, dass ich die Frage wiederhole? 121233213")
                         .build();
             } else {

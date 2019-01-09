@@ -13,14 +13,14 @@ public class RegelHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("RegelIntent"))&&Logic.STATUS_ID!=4;
+        return input.matches(intentName("RegelIntent").or(intentName("AMAZON.HelpIntent")));
     }
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder()
                 .withSpeech("Möchtest du etwas über den Spielablauf oder die Punktvergabe wissen?")
-                .withReprompt("bist du eingeschlafen ?")
+                .withReprompt("Möchtest du etwas über den Spielablauf oder die Punktvergabe wissen?")
                 .build();
     }
 }

@@ -14,6 +14,7 @@
 package gehirnjogging;
 
 import com.amazon.ask.Skill;
+
 import com.amazon.ask.SkillStreamHandler;
 import com.amazon.ask.Skills;
 import gehirnjogging.handlers.CancelandStopIntentHandler;
@@ -21,7 +22,6 @@ import gehirnjogging.handlers.EndHandler;
 import gehirnjogging.handlers.FallbackIntentHandler;
 import gehirnjogging.handlers.FrageWiederholenHandler;
 import gehirnjogging.handlers.GameStartIntentHandler;
-import gehirnjogging.handlers.HelpIntentHandler;
 import gehirnjogging.handlers.LaunchRequestHandler;
 import gehirnjogging.handlers.MehrspielerHandler;
 import gehirnjogging.handlers.NoHandler;
@@ -47,7 +47,6 @@ public class GehirnjoggingStreamHandler extends SkillStreamHandler {
                         new ScoreHandler(),
                         new FrageWiederholenHandler(),
                         new CancelandStopIntentHandler(),
-                        new HelpIntentHandler(),
                         new FallbackIntentHandler(),
                         new GameStartIntentHandler(),
                         new RegelHandler(),
