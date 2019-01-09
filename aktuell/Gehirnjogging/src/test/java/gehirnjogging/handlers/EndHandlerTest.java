@@ -18,8 +18,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 
-public class GameStartIntentHandlerTest {
-	GameStartIntentHandler handler = new GameStartIntentHandler();
+public class EndHandlerTest {
+	EndHandler handler = new EndHandler();
 
     @Test
     public void testCanHandle(){
@@ -31,19 +31,16 @@ public class GameStartIntentHandlerTest {
     
     @Test
     public void testHandle() {
-        Logic haus = new Logic();
-
-        Map<String, Object> sessAtt = new HashMap<String, Object>();
-        sessAtt.put("test","tests");
-        final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
-
-        haus.STATUS_ID = 3;
-        haus.EINSTELLUNGS_ID = 1;
-        Optional<Response> res = handler.handle(mockInput);
-        Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen oder hast du Freunde dabei?"));
-
-
+//        Map<String, Object> sessAtt = new HashMap<String, Object>();
+//        sessAtt.put("test", "tests");
+//        final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
+//
+//        final Optional<Response> res = handler.handle(mockInput);
+//        Logic haus = new Logic();
+//        haus.counter = 0;
+//        assertTrue(res.isPresent());
+//        final Response response = res.get();
+//        assertTrue(response.getOutputSpeech().toString().contains("Schade"));
 
     }
 

@@ -2,6 +2,7 @@ package gehirnjogging.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import com.amazon.ask.model.Response;
@@ -18,8 +19,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 
-public class GameStartIntentHandlerTest {
-	GameStartIntentHandler handler = new GameStartIntentHandler();
+public class SessionEndedRequestHandlerTest{
+	SessionEndedRequestHandler handler = new SessionEndedRequestHandler();
 
     @Test
     public void testCanHandle(){
@@ -29,22 +30,19 @@ public class GameStartIntentHandlerTest {
         assertTrue(handler.canHandle(inputMock));
     }
     
-    @Test
+    @Test(expected = ClassCastException.class)
     public void testHandle() {
+
         Logic haus = new Logic();
 
         Map<String, Object> sessAtt = new HashMap<String, Object>();
         sessAtt.put("test","tests");
         final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
 
-        haus.STATUS_ID = 3;
-        haus.EINSTELLUNGS_ID = 1;
         Optional<Response> res = handler.handle(mockInput);
         Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen oder hast du Freunde dabei?"));
-
-
-
+        System.out.println(response.hashCode());
+//        assertEquals(response.hashCode(), 8);
     }
 
 }

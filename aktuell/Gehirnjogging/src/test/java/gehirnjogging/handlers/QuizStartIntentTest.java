@@ -4,6 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 
 import static org.junit.Assert.assertTrue;
 
+
 import com.amazon.ask.model.Response;
 import gehirnjogging.Logic;
 import gehirnjogging.TestUtil;
@@ -18,11 +19,13 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 
-public class GameStartIntentHandlerTest {
-	GameStartIntentHandler handler = new GameStartIntentHandler();
+public class QuizStartIntentTest{
+    QuizStartIntentHandler handler = new QuizStartIntentHandler();
+    Logic haus = new Logic();
 
     @Test
     public void testCanHandle(){
+        haus.STATUS_ID = 1;
     	
         final HandlerInput inputMock = Mockito.mock(HandlerInput.class);
         when(inputMock.matches(any())).thenReturn(true);
@@ -31,20 +34,29 @@ public class GameStartIntentHandlerTest {
     
     @Test
     public void testHandle() {
-        Logic haus = new Logic();
 
+        haus.newGame();
+        haus.initializeNumbers();
+        haus.initializeQuestions();
+        haus.STATUS_ID = 0;
+        haus.inizialPoints();
+
+        haus.EINSTELLUNGS_COUNTER_R=1;
         Map<String, Object> sessAtt = new HashMap<String, Object>();
         sessAtt.put("test","tests");
         final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
 
-        haus.STATUS_ID = 3;
-        haus.EINSTELLUNGS_ID = 1;
         Optional<Response> res = handler.handle(mockInput);
         Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen oder hast du Freunde dabei?"));
+        assertTrue(response.getOutputSpeech().toString().contains("Dann legen wir los! Hier kommt Frage ")||
+                response.getOutputSpeech().toString().contains("Punkte erreicht <audio src='soundbank:"));
 
+        haus.EINSTELLUNGS_COUNTER_R=2;
 
-
+        res = handler.handle(mockInput);
+        response = res.get();
+        assertTrue(response.getOutputSpeech().toString().contains("Dann legen wir los! Hier kommt Frage ")||
+                response.getOutputSpeech().toString().contains("Wollt ihr noch eine runde spielen ?"));
     }
 
 }

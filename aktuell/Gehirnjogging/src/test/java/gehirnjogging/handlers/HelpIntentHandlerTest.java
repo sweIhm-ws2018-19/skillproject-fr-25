@@ -18,8 +18,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 
 
-public class GameStartIntentHandlerTest {
-	GameStartIntentHandler handler = new GameStartIntentHandler();
+public class HelpIntentHandlerTest {
+	HelpIntentHandler handler = new HelpIntentHandler();
 
     @Test
     public void testCanHandle(){
@@ -37,14 +37,9 @@ public class GameStartIntentHandlerTest {
         sessAtt.put("test","tests");
         final HandlerInput mockInput = TestUtil.mockHandlerInput(null, sessAtt, null, null);
 
-        haus.STATUS_ID = 3;
-        haus.EINSTELLUNGS_ID = 1;
         Optional<Response> res = handler.handle(mockInput);
         Response response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("du alleine spielen oder hast du Freunde dabei?"));
-
-
-
+        assertTrue(response.getOutputSpeech().toString().contains("Willkommen bei der Train Your Brain"));
     }
 
 }
