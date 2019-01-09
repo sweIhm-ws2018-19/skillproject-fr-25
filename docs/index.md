@@ -4,6 +4,8 @@ Hier ein paar UML Diagramme:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png
 )
 
+<img src="https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png" alt="Logo" class = "inline"/>
+
 #### Einstellungen:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png)
 
