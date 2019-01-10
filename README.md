@@ -16,4 +16,4 @@ Mit dem Skill soll sowohl sinnvoller Kontext vermittelt, als auch die geistige F
 * Es werden 2 Lerntypen angesprochen:
 der Auditive (hören) und der Kommunikative (Kommunikation)
 * Anwendung auch für Blinde/Sehbehinderte oder motorisch eingeschränkte Menschen
-Soll wegführen vom Handydisplay  z.B. auch im Auto anwendbar
+Soll wegführen vom Handydisplay -> z.B. auch im Auto anwendbar
