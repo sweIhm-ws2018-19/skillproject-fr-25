@@ -12,7 +12,8 @@
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png?raw=true)
 
 ### Pause:
-https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Pause.png
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Pause.png?raw=true)
+
 
 ### Quize:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Quiz.png?raw=true)
