@@ -18,6 +18,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
+import gehirnjogging.Logic;
+
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
@@ -26,7 +28,7 @@ public class HelpIntentHandler implements RequestHandler {
     
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.HelpIntent"));
+        return input.matches(intentName("AMAZON.HelpIntent"))&&Logic.STATUS_ID!=4;
     }
 
     @Override

@@ -66,7 +66,7 @@ public class FallbackIntentHandlerTest {
         haus.EINSTELLUNGS_ID = 2;
         res = handler.handle(mockInput);
         response = res.get();
-        assertTrue(response.getOutputSpeech().toString().contains("Tut mir Leid ich habe sie nicht verstanden In"));
+        assertTrue(response.getOutputSpeech().toString().contains("Tut mir Leid, ich habe sie leider nicht verstanden"));
 
 
 
