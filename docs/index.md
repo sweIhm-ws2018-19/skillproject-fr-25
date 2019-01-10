@@ -21,8 +21,8 @@ test classisch:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png)
 
 #### Pause:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Pause.png
-)
+<img src="https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png?raw=true"
+
 
 #### Quize:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Quiz.png
