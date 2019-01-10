@@ -3,6 +3,7 @@
 ![](https://travis-ci.org/sweIhm-ws2018-19/skillproject-fr-25.svg?branch=master)
 
 
+<!---
 
 ## Anwendungsfalldiagramm:
 
@@ -27,6 +28,7 @@
 ### Spielende:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_spielende.png?raw=true)
 
+-->
 
 
 ### Teil 1 + 2:
