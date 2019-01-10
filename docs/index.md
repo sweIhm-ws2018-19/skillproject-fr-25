@@ -18,20 +18,19 @@ test classisch:
 
 
 #### Einstellungen:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png?raw=true)
 
 #### Pause:
-<img src="https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png?raw=true"
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png?raw=true)
 
 
 #### Quize:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Quiz.png
-)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Quiz.png?raw=true)
 
 #### Spielende:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_spielende.png)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_spielende.png?raw=true)
 
 #### Anwendungsfall Diagramm:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/AnwendungsfalldiagrammNeu.png)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/AnwendungsfalldiagrammNeu.png?raw=true)
 
 
