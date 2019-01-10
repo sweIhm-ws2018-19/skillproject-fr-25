@@ -1,13 +1,5 @@
-test mit user-images:
+#Anwendungsfalldiagramm:
 
-Klaus war Hier
-
-
-test mit raw.githubusercontent:
-
-
-
-test classisch:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/AnwendungsfalldiagrammNeu.png?raw=true)
 
 
