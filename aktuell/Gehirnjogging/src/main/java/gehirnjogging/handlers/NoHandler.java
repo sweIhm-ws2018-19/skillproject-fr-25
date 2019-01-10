@@ -62,11 +62,11 @@ public class NoHandler implements RequestHandler {
                         .withSpeech("Dann legen wir los! Hier kommt Frage " + Logic.counter + " " + Logic.questions[Logic.FRAGE_NUMBER][0])
                         .withReprompt("möchtet du, dass ich die Frage wiederhole?"+"  "+Logic.STATUS_ID+"     "+Logic.EINSTELLUNGS_COUNTER)
                         .build();
-            }else if(Logic.STATUS_ID==2) {
-                return input.getResponseBuilder()
-                        .withSpeech("gut dann lasse ich dir noch Zeit zum Nachdeken wenn du doch die Frage nocheinmal hören willst sage Frage wiederholen")
-                        .withReprompt("bist du eingeschlafen ?")
-                        .build();
+//            }else if(Logic.STATUS_ID==2) {
+//                return input.getResponseBuilder()
+//                        .withSpeech("gut dann lasse ich dir noch Zeit zum Nachdeken wenn du doch die Frage nocheinmal hören willst sage Frage wiederholen")
+//                        .withReprompt("bist du eingeschlafen ?")
+//                        .build();
             }
         }else if(Logic.STATUS_ID==3) {
             Logic.EINSTELLUNGS_ID=3;
