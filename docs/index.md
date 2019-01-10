@@ -38,4 +38,5 @@
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Uml2.PNG?raw=true)
 
 ### Fachklassendiagramm:
-![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Uml3.PNG?raw=true)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Uml5.PNG?raw=true)
+![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Uml6.PNG?raw=true)
