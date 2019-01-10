@@ -5,7 +5,7 @@ test mit user-images:
 
 test mit raw.githubusercontent:
 
-<img src="https://raw.githubusercontent.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivitatsdiagramm_Regeln.png" alt="Aktivitatsdiagramm" class = "inline"/>
+<img src="https://raw.githubusercontent.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_Einstellung.png" class = "inline"/>
 
 test classisch:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/AnwendungsfalldiagrammNeu.png)
