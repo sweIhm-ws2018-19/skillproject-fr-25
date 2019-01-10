@@ -1,3 +1,5 @@
+<img src="https://user-images.githubusercontent.com/38068315/48347565-e3633e80-e67e-11e8-9716-77451c3b12f0.png" alt="Logo" class = "inline"/>
+
 Hier ein paar UML Diagramme: 
 
 #### Regeln:
