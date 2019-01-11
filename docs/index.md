@@ -27,7 +27,6 @@ Soll wegführen vom Handydisplay  z.B. auch im Auto anwendbar
 
 
 
-<!---
 
 
 
@@ -54,6 +53,7 @@ Soll wegführen vom Handydisplay  z.B. auch im Auto anwendbar
 ### Spielende:
 ![Alt-Text](https://github.com/sweIhm-ws2018-19/skillproject-fr-25/blob/master/Sprint3/Aktivit%C3%A4tsdiagramm_spielende.png?raw=true)
 
+<!---
 -->
 
 
