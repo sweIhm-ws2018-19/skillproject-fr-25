@@ -5,8 +5,6 @@
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=alexa-skills-kit-samples%3AGehirnjogging&metric=alert_status)](https://sonarcloud.io/dashboard?id=skillproject%3Gehirnjogging)
 
 
-<!---
-
 ## Beschreibung
 Anwendung für interaktives Training der geistigen Fähigkeiten.
 
@@ -28,6 +26,8 @@ Soll wegführen vom Handydisplay  z.B. auch im Auto anwendbar
 
 
 
+
+<!---
 
 
 
